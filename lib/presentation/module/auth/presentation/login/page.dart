@@ -51,8 +51,9 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                 Navigator.of(context).pop();
                 showFlushbar(context, state.message);
               } else if (state is AuthLoginGoState) {
+                App.main.accessToken = state.accessToken;
                 try {
-                  Modular.to.navigate('/home');
+                  Modular.to.pushReplacementNamed('/home/');
                 } catch (e) {
                   Navigator.of(context).pop();
                 }

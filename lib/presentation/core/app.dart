@@ -7,6 +7,7 @@ class App {
   late String firebaseToken;
   late Dio client;
   late Dio clientAuth;
+  late String accessToken;
 
   static App get main => Modular.get<App>();
 

@@ -30,7 +30,7 @@ class AuthRepositoryImpl implements AuthRepository {
     logger.fine('Do login => FCM : ${fcmToken}');
     try {
       Response response = await client.post(
-        'login',
+        '/auth/login',
         data: {
           'email': phone,
           'password': password,
@@ -75,7 +75,7 @@ class AuthRepositoryImpl implements AuthRepository {
     logger.fine('Do login => FCM : ${fcmToken}');
     try {
       Response response = await client.post(
-        'register',
+        '/auth/register',
         data: {
           'full_name': phone,
           'username': phone,

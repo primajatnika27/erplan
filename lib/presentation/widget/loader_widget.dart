@@ -13,7 +13,10 @@ class LoaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(12.w),
-      color: Theme.of(context).backgroundColor,
+      decoration: BoxDecoration(
+        color: Theme.of(context).backgroundColor,
+        borderRadius: BorderRadius.circular(8),
+      ),
       child: Column(
         children: [
           SizedBox(

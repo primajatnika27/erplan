@@ -1,0 +1,430 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.foreximf.quickpro"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="30" />
+10    <!--
+11         Flutter needs it to communicate with the running application
+12         to allow setting breakpoints, to provide hot reload, etc.
+13    -->
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:4:5-67
+14-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:4:22-64
+15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+15-->[:firebase_analytics] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-79
+15-->[:firebase_analytics] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:7:22-76
+16    <uses-permission android:name="android.permission.WAKE_LOCK" />
+16-->[:firebase_analytics] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:9:5-68
+16-->[:firebase_analytics] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:9:22-65
+17
+18    <queries>
+18-->[:flutter_inappwebview] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:7:5-11:15
+19        <intent>
+19-->[:flutter_inappwebview] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-10:18
+20            <action android:name="android.support.customtabs.action.CustomTabsService" />
+20-->[:flutter_inappwebview] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-90
+20-->[:flutter_inappwebview] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:9:21-87
+21        </intent>
+22        <intent>
+22-->[androidx.media2:media2-session:1.1.3] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/5eb5694aff6534f0db5aa266d2161838/jetified-media2-session-1.1.3/AndroidManifest.xml:25:9-27:18
+23            <action android:name="android.media.browse.MediaBrowserService" />
+23-->[androidx.media2:media2-session:1.1.3] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/5eb5694aff6534f0db5aa266d2161838/jetified-media2-session-1.1.3/AndroidManifest.xml:26:13-79
+23-->[androidx.media2:media2-session:1.1.3] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/5eb5694aff6534f0db5aa266d2161838/jetified-media2-session-1.1.3/AndroidManifest.xml:26:21-76
+24        </intent>
+25        <intent>
+25-->[androidx.media2:media2-session:1.1.3] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/5eb5694aff6534f0db5aa266d2161838/jetified-media2-session-1.1.3/AndroidManifest.xml:28:9-30:18
+26            <action android:name="androidx.media2.session.MediaSessionService" />
+26-->[androidx.media2:media2-session:1.1.3] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/5eb5694aff6534f0db5aa266d2161838/jetified-media2-session-1.1.3/AndroidManifest.xml:29:13-82
+26-->[androidx.media2:media2-session:1.1.3] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/5eb5694aff6534f0db5aa266d2161838/jetified-media2-session-1.1.3/AndroidManifest.xml:29:21-79
+27        </intent>
+28        <intent>
+28-->[androidx.media2:media2-session:1.1.3] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/5eb5694aff6534f0db5aa266d2161838/jetified-media2-session-1.1.3/AndroidManifest.xml:31:9-33:18
+29            <action android:name="androidx.media2.session.MediaLibraryService" />
+29-->[androidx.media2:media2-session:1.1.3] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/5eb5694aff6534f0db5aa266d2161838/jetified-media2-session-1.1.3/AndroidManifest.xml:32:13-82
+29-->[androidx.media2:media2-session:1.1.3] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/5eb5694aff6534f0db5aa266d2161838/jetified-media2-session-1.1.3/AndroidManifest.xml:32:21-79
+30        </intent>
+31    </queries> <!-- Required by older versions of Google Play services to create IID tokens -->
+32    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+32-->[com.google.firebase:firebase-messaging:23.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/70a5be8bc4a28ff54863dda5f2a4e727/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:25:5-82
+32-->[com.google.firebase:firebase-messaging:23.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/70a5be8bc4a28ff54863dda5f2a4e727/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:25:22-79
+33    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
+33-->[com.google.android.gms:play-services-measurement:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/2acb65b8e0420c476bf1322c514d6040/jetified-play-services-measurement-20.0.2/AndroidManifest.xml:26:5-110
+33-->[com.google.android.gms:play-services-measurement:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/2acb65b8e0420c476bf1322c514d6040/jetified-play-services-measurement-20.0.2/AndroidManifest.xml:26:22-107
+34    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Include required permissions for Advertising Id -->
+34-->[com.facebook.flipper:flipper:0.111.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/1afd407d0ff8cc915dee73df4a7f5c4b/jetified-flipper-0.111.0/AndroidManifest.xml:16:5-76
+34-->[com.facebook.flipper:flipper:0.111.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/1afd407d0ff8cc915dee73df4a7f5c4b/jetified-flipper-0.111.0/AndroidManifest.xml:16:22-73
+35    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+35-->[com.google.android.gms:play-services-ads-identifier:18.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/9a640c82287278bfe39ecd9056bb9a19/jetified-play-services-ads-identifier-18.0.0/AndroidManifest.xml:23:5-79
+35-->[com.google.android.gms:play-services-ads-identifier:18.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/9a640c82287278bfe39ecd9056bb9a19/jetified-play-services-ads-identifier-18.0.0/AndroidManifest.xml:23:22-76
+36
+37    <application
+37-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:5:5-46:19
+38        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+38-->[androidx.core:core:1.6.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/8b1de47239f83b4ae53af2852d74d4bc/core-1.6.0/AndroidManifest.xml:24:18-86
+39        android:debuggable="true"
+40        android:icon="@mipmap/ic_launcher"
+40-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:6:9-43
+41        android:label="ERPLAN" >
+41-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:7:9-31
+42        <activity
+42-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:8:9-42:20
+43            android:name="com.foreximf.quickpro.MainActivity"
+43-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:9:13-41
+44            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+44-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:10:13-163
+45            android:hardwareAccelerated="true"
+45-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:11:13-47
+46            android:launchMode="singleTop"
+46-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:12:13-43
+47            android:theme="@style/LaunchTheme"
+47-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:13:13-47
+48            android:windowSoftInputMode="adjustResize" >
+48-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:14:13-55
+49            <meta-data
+49-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:15:13-17:57
+50                android:name="io.flutter.embedding.android.NormalTheme"
+50-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:16:17-72
+51                android:resource="@style/NormalTheme" />
+51-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:17:17-54
+52            <meta-data
+52-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:18:13-20:66
+53                android:name="io.flutter.embedding.android.SplashScreenDrawable"
+53-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:19:17-81
+54                android:resource="@drawable/launch_background" />
+54-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:20:17-63
+55
+56            <intent-filter>
+56-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:22:13-25:29
+57                <action android:name="android.intent.action.MAIN" />
+57-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:23:17-69
+57-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:23:25-66
+58
+59                <category android:name="android.intent.category.LAUNCHER" />
+59-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:24:17-77
+59-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:24:27-74
+60            </intent-filter>
+61            <!-- Deep links -->
+62            <intent-filter>
+62-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:27:13-36:29
+63                <action android:name="android.intent.action.VIEW" />
+63-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:28:17-69
+63-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:28:25-66
+64
+65                <category android:name="android.intent.category.DEFAULT" />
+65-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:30:17-76
+65-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:30:27-73
+66                <category android:name="android.intent.category.BROWSABLE" />
+66-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:31:17-78
+66-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:31:27-75
+67
+68                <data
+68-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:33:17-35:49
+69                    android:host="com.foreximf.quickpro"
+69-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:34:21-57
+70                    android:scheme="unilinks" />
+70-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:35:21-46
+71            </intent-filter>
+72            <!-- FCM -->
+73            <intent-filter>
+73-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:38:13-41:29
+74                <action android:name="FLUTTER_NOTIFICATION_CLICK" />
+74-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:39:17-69
+74-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:39:25-66
+75
+76                <category android:name="android.intent.category.DEFAULT" />
+76-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:30:17-76
+76-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:30:27-73
+77            </intent-filter>
+78        </activity>
+79
+80        <meta-data
+80-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:43:9-45:33
+81            android:name="flutterEmbedding"
+81-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:44:13-44
+82            android:value="2" />
+82-->/Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/android/app/src/main/AndroidManifest.xml:45:13-30
+83
+84        <service
+84-->[:firebase_analytics] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-16:19
+85            android:name="com.google.firebase.components.ComponentDiscoveryService"
+85-->[:firebase_analytics] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:12:18-89
+86            android:directBootAware="true"
+86-->[com.google.firebase:firebase-common:20.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/c0bb6da58c02159f5250b222963f74db/jetified-firebase-common-20.0.0/AndroidManifest.xml:35:13-43
+87            android:exported="false" >
+87-->[com.google.firebase:firebase-messaging:23.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/70a5be8bc4a28ff54863dda5f2a4e727/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:51:13-37
+88            <meta-data
+88-->[:firebase_analytics] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-15:85
+89                android:name="com.google.firebase.components:io.flutter.plugins.firebase.analytics.FlutterFirebaseAppRegistrar"
+89-->[:firebase_analytics] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:14:17-128
+90                android:value="com.google.firebase.components.ComponentRegistrar" />
+90-->[:firebase_analytics] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_analytics/intermediates/library_manifest/debug/AndroidManifest.xml:15:17-82
+91            <meta-data
+91-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:34:13-36:85
+92                android:name="com.google.firebase.components:io.flutter.plugins.firebase.messaging.FlutterFirebaseAppRegistrar"
+92-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:35:17-128
+93                android:value="com.google.firebase.components.ComponentRegistrar" />
+93-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:36:17-82
+94            <meta-data
+94-->[:firebase_core] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-11:85
+95                android:name="com.google.firebase.components:io.flutter.plugins.firebase.core.FlutterFirebaseCoreRegistrar"
+95-->[:firebase_core] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:10:17-124
+96                android:value="com.google.firebase.components.ComponentRegistrar" />
+96-->[:firebase_core] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:11:17-82
+97            <meta-data
+97-->[com.google.firebase:firebase-messaging:23.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/70a5be8bc4a28ff54863dda5f2a4e727/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:52:13-54:85
+98                android:name="com.google.firebase.components:com.google.firebase.messaging.FirebaseMessagingRegistrar"
+98-->[com.google.firebase:firebase-messaging:23.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/70a5be8bc4a28ff54863dda5f2a4e727/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:53:17-119
+99                android:value="com.google.firebase.components.ComponentRegistrar" />
+99-->[com.google.firebase:firebase-messaging:23.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/70a5be8bc4a28ff54863dda5f2a4e727/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:54:17-82
+100            <meta-data
+100-->[com.google.android.gms:play-services-measurement-api:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/998b897c12b80479895bcd3cb5ab21e8/jetified-play-services-measurement-api-20.0.2/AndroidManifest.xml:30:13-32:85
+101                android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+101-->[com.google.android.gms:play-services-measurement-api:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/998b897c12b80479895bcd3cb5ab21e8/jetified-play-services-measurement-api-20.0.2/AndroidManifest.xml:31:17-139
+102                android:value="com.google.firebase.components.ComponentRegistrar" />
+102-->[com.google.android.gms:play-services-measurement-api:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/998b897c12b80479895bcd3cb5ab21e8/jetified-play-services-measurement-api-20.0.2/AndroidManifest.xml:32:17-82
+103            <meta-data
+103-->[com.google.firebase:firebase-datatransport:18.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/7327d16810b62f3bd41c9cab63e2e00e/jetified-firebase-datatransport-18.0.0/AndroidManifest.xml:28:13-30:85
+104                android:name="com.google.firebase.components:com.google.firebase.datatransport.TransportRegistrar"
+104-->[com.google.firebase:firebase-datatransport:18.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/7327d16810b62f3bd41c9cab63e2e00e/jetified-firebase-datatransport-18.0.0/AndroidManifest.xml:29:17-115
+105                android:value="com.google.firebase.components.ComponentRegistrar" />
+105-->[com.google.firebase:firebase-datatransport:18.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/7327d16810b62f3bd41c9cab63e2e00e/jetified-firebase-datatransport-18.0.0/AndroidManifest.xml:30:17-82
+106            <meta-data
+106-->[com.google.firebase:firebase-installations:17.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/8023b6a1a6befa0e67112c0c4e792d79/jetified-firebase-installations-17.0.0/AndroidManifest.xml:18:13-20:85
+107                android:name="com.google.firebase.components:com.google.firebase.installations.FirebaseInstallationsRegistrar"
+107-->[com.google.firebase:firebase-installations:17.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/8023b6a1a6befa0e67112c0c4e792d79/jetified-firebase-installations-17.0.0/AndroidManifest.xml:19:17-127
+108                android:value="com.google.firebase.components.ComponentRegistrar" />
+108-->[com.google.firebase:firebase-installations:17.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/8023b6a1a6befa0e67112c0c4e792d79/jetified-firebase-installations-17.0.0/AndroidManifest.xml:20:17-82
+109        </service>
+110        <service
+110-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:12:9-15:72
+111            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingBackgroundService"
+111-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-107
+112            android:exported="false"
+112-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:14:13-37
+113            android:permission="android.permission.BIND_JOB_SERVICE" />
+113-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-69
+114        <service
+114-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:16:9-22:19
+115            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingService"
+115-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-97
+116            android:exported="false" >
+116-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:18:13-37
+117            <intent-filter>
+117-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:19:13-21:29
+118                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+118-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:20:17-78
+118-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:20:25-75
+119            </intent-filter>
+120        </service>
+121
+122        <receiver
+122-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:24:9-31:20
+123            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingReceiver"
+123-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:25:13-98
+124            android:exported="true"
+124-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:26:13-36
+125            android:permission="com.google.android.c2dm.permission.SEND" >
+125-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:27:13-73
+126            <intent-filter>
+126-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:28:13-30:29
+127                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+127-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:29:17-81
+127-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:29:25-78
+128            </intent-filter>
+129        </receiver>
+130
+131        <provider
+131-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:39:9-43:38
+132            android:name="io.flutter.plugins.firebase.messaging.FlutterFirebaseMessagingInitProvider"
+132-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:40:13-102
+133            android:authorities="com.foreximf.quickpro.flutterfirebasemessaginginitprovider"
+133-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:41:13-88
+134            android:exported="false"
+134-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:42:13-37
+135            android:initOrder="99" />
+135-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:43:13-35
+136        <provider
+136-->[:image_picker_android] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/image_picker_android/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-16:20
+137            android:name="io.flutter.plugins.imagepicker.ImagePickerFileProvider"
+137-->[:image_picker_android] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/image_picker_android/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-82
+138            android:authorities="com.foreximf.quickpro.flutter.image_provider"
+138-->[:image_picker_android] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/image_picker_android/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-74
+139            android:exported="false"
+139-->[:image_picker_android] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/image_picker_android/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-37
+140            android:grantUriPermissions="true" >
+140-->[:image_picker_android] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/image_picker_android/intermediates/library_manifest/debug/AndroidManifest.xml:12:13-47
+141            <meta-data
+141-->[:image_picker_android] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/image_picker_android/intermediates/library_manifest/debug/AndroidManifest.xml:13:13-15:75
+142                android:name="android.support.FILE_PROVIDER_PATHS"
+142-->[:image_picker_android] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/image_picker_android/intermediates/library_manifest/debug/AndroidManifest.xml:14:17-67
+143                android:resource="@xml/flutter_image_picker_file_paths" />
+143-->[:image_picker_android] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/image_picker_android/intermediates/library_manifest/debug/AndroidManifest.xml:15:17-72
+144        </provider>
+145
+146        <activity
+146-->[:url_launcher_android] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:8:9-11:74
+147            android:name="io.flutter.plugins.urllauncher.WebViewActivity"
+147-->[:url_launcher_android] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:9:13-74
+148            android:exported="false"
+148-->[:url_launcher_android] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:10:13-37
+149            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+149-->[:url_launcher_android] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/url_launcher_android/intermediates/library_manifest/debug/AndroidManifest.xml:11:13-71
+150        <activity
+150-->[:flutter_inappwebview] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:14:9-17:47
+151            android:name="com.pichillilorenzo.flutter_inappwebview.in_app_browser.InAppBrowserActivity"
+151-->[:flutter_inappwebview] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:15:13-104
+152            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density"
+152-->[:flutter_inappwebview] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:16:13-137
+153            android:theme="@style/AppTheme" />
+153-->[:flutter_inappwebview] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:17:13-44
+154        <activity
+154-->[:flutter_inappwebview] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:18:9-20:55
+155            android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ChromeCustomTabsActivity"
+155-->[:flutter_inappwebview] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:19:13-112
+156            android:theme="@style/ThemeTransparent" />
+156-->[:flutter_inappwebview] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:20:13-52
+157
+158        <receiver android:name="com.pichillilorenzo.flutter_inappwebview.chrome_custom_tabs.ActionBroadcastReceiver" />
+158-->[:flutter_inappwebview] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:22:9-120
+158-->[:flutter_inappwebview] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:22:19-117
+159
+160        <meta-data
+160-->[:flutter_inappwebview] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:24:9-26:36
+161            android:name="io.flutter.embedded_views_preview"
+161-->[:flutter_inappwebview] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:25:13-61
+162            android:value="true" />
+162-->[:flutter_inappwebview] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/flutter_inappwebview/intermediates/library_manifest/debug/AndroidManifest.xml:26:13-33
+163
+164        <uses-library
+164-->[androidx.window:window:1.0.0-beta04] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/789c663c883c1c662567c46a68640eb6/jetified-window-1.0.0-beta04/AndroidManifest.xml:25:9-27:40
+165            android:name="androidx.window.extensions"
+165-->[androidx.window:window:1.0.0-beta04] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/789c663c883c1c662567c46a68640eb6/jetified-window-1.0.0-beta04/AndroidManifest.xml:26:13-54
+166            android:required="false" />
+166-->[androidx.window:window:1.0.0-beta04] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/789c663c883c1c662567c46a68640eb6/jetified-window-1.0.0-beta04/AndroidManifest.xml:27:13-37
+167        <uses-library
+167-->[androidx.window:window:1.0.0-beta04] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/789c663c883c1c662567c46a68640eb6/jetified-window-1.0.0-beta04/AndroidManifest.xml:28:9-30:40
+168            android:name="androidx.window.sidecar"
+168-->[androidx.window:window:1.0.0-beta04] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/789c663c883c1c662567c46a68640eb6/jetified-window-1.0.0-beta04/AndroidManifest.xml:29:13-51
+169            android:required="false" />
+169-->[androidx.window:window:1.0.0-beta04] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/789c663c883c1c662567c46a68640eb6/jetified-window-1.0.0-beta04/AndroidManifest.xml:30:13-37
+170
+171        <receiver
+171-->[com.google.firebase:firebase-messaging:23.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/70a5be8bc4a28ff54863dda5f2a4e727/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:28:9-35:20
+172            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+172-->[com.google.firebase:firebase-messaging:23.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/70a5be8bc4a28ff54863dda5f2a4e727/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:29:13-78
+173            android:exported="true"
+173-->[com.google.firebase:firebase-messaging:23.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/70a5be8bc4a28ff54863dda5f2a4e727/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:30:13-36
+174            android:permission="com.google.android.c2dm.permission.SEND" >
+174-->[com.google.firebase:firebase-messaging:23.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/70a5be8bc4a28ff54863dda5f2a4e727/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:31:13-73
+175            <intent-filter>
+175-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:28:13-30:29
+176                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+176-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:29:17-81
+176-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:29:25-78
+177            </intent-filter>
+178        </receiver>
+179        <!--
+180             FirebaseMessagingService performs security checks at runtime,
+181             but set to not exported to explicitly avoid allowing another app to call it.
+182        -->
+183        <service
+183-->[com.google.firebase:firebase-messaging:23.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/70a5be8bc4a28ff54863dda5f2a4e727/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:41:9-48:19
+184            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+184-->[com.google.firebase:firebase-messaging:23.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/70a5be8bc4a28ff54863dda5f2a4e727/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:42:13-82
+185            android:directBootAware="true"
+185-->[com.google.firebase:firebase-messaging:23.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/70a5be8bc4a28ff54863dda5f2a4e727/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:43:13-43
+186            android:exported="false" >
+186-->[com.google.firebase:firebase-messaging:23.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/70a5be8bc4a28ff54863dda5f2a4e727/jetified-firebase-messaging-23.0.0/AndroidManifest.xml:44:13-37
+187            <intent-filter android:priority="-500" >
+187-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:19:13-21:29
+188                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+188-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:20:17-78
+188-->[:firebase_messaging] /Users/mbpro/Documents/ForexIMF Development/Quickpro-Flutter/build/firebase_messaging/intermediates/library_manifest/debug/AndroidManifest.xml:20:25-75
+189            </intent-filter>
+190        </service>
+191
+192        <provider
+192-->[com.google.firebase:firebase-common:20.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/c0bb6da58c02159f5250b222963f74db/jetified-firebase-common-20.0.0/AndroidManifest.xml:26:9-31:39
+193            android:name="com.google.firebase.provider.FirebaseInitProvider"
+193-->[com.google.firebase:firebase-common:20.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/c0bb6da58c02159f5250b222963f74db/jetified-firebase-common-20.0.0/AndroidManifest.xml:27:13-77
+194            android:authorities="com.foreximf.quickpro.firebaseinitprovider"
+194-->[com.google.firebase:firebase-common:20.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/c0bb6da58c02159f5250b222963f74db/jetified-firebase-common-20.0.0/AndroidManifest.xml:28:13-72
+195            android:directBootAware="true"
+195-->[com.google.firebase:firebase-common:20.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/c0bb6da58c02159f5250b222963f74db/jetified-firebase-common-20.0.0/AndroidManifest.xml:29:13-43
+196            android:exported="false"
+196-->[com.google.firebase:firebase-common:20.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/c0bb6da58c02159f5250b222963f74db/jetified-firebase-common-20.0.0/AndroidManifest.xml:30:13-37
+197            android:initOrder="100" />
+197-->[com.google.firebase:firebase-common:20.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/c0bb6da58c02159f5250b222963f74db/jetified-firebase-common-20.0.0/AndroidManifest.xml:31:13-36
+198
+199        <receiver
+199-->[com.google.android.gms:play-services-measurement:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/2acb65b8e0420c476bf1322c514d6040/jetified-play-services-measurement-20.0.2/AndroidManifest.xml:29:9-33:20
+200            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+200-->[com.google.android.gms:play-services-measurement:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/2acb65b8e0420c476bf1322c514d6040/jetified-play-services-measurement-20.0.2/AndroidManifest.xml:30:13-85
+201            android:enabled="true"
+201-->[com.google.android.gms:play-services-measurement:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/2acb65b8e0420c476bf1322c514d6040/jetified-play-services-measurement-20.0.2/AndroidManifest.xml:31:13-35
+202            android:exported="false" >
+202-->[com.google.android.gms:play-services-measurement:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/2acb65b8e0420c476bf1322c514d6040/jetified-play-services-measurement-20.0.2/AndroidManifest.xml:32:13-37
+203        </receiver>
+204
+205        <service
+205-->[com.google.android.gms:play-services-measurement:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/2acb65b8e0420c476bf1322c514d6040/jetified-play-services-measurement-20.0.2/AndroidManifest.xml:35:9-38:40
+206            android:name="com.google.android.gms.measurement.AppMeasurementService"
+206-->[com.google.android.gms:play-services-measurement:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/2acb65b8e0420c476bf1322c514d6040/jetified-play-services-measurement-20.0.2/AndroidManifest.xml:36:13-84
+207            android:enabled="true"
+207-->[com.google.android.gms:play-services-measurement:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/2acb65b8e0420c476bf1322c514d6040/jetified-play-services-measurement-20.0.2/AndroidManifest.xml:37:13-35
+208            android:exported="false" />
+208-->[com.google.android.gms:play-services-measurement:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/2acb65b8e0420c476bf1322c514d6040/jetified-play-services-measurement-20.0.2/AndroidManifest.xml:38:13-37
+209        <service
+209-->[com.google.android.gms:play-services-measurement:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/2acb65b8e0420c476bf1322c514d6040/jetified-play-services-measurement-20.0.2/AndroidManifest.xml:39:9-43:72
+210            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+210-->[com.google.android.gms:play-services-measurement:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/2acb65b8e0420c476bf1322c514d6040/jetified-play-services-measurement-20.0.2/AndroidManifest.xml:40:13-87
+211            android:enabled="true"
+211-->[com.google.android.gms:play-services-measurement:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/2acb65b8e0420c476bf1322c514d6040/jetified-play-services-measurement-20.0.2/AndroidManifest.xml:41:13-35
+212            android:exported="false"
+212-->[com.google.android.gms:play-services-measurement:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/2acb65b8e0420c476bf1322c514d6040/jetified-play-services-measurement-20.0.2/AndroidManifest.xml:42:13-37
+213            android:permission="android.permission.BIND_JOB_SERVICE" />
+213-->[com.google.android.gms:play-services-measurement:20.0.2] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/2acb65b8e0420c476bf1322c514d6040/jetified-play-services-measurement-20.0.2/AndroidManifest.xml:43:13-69
+214
+215        <meta-data
+215-->[com.google.android.gms:play-services-basement:18.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/1ff9203964a0283968a4c7fb09a23e04/jetified-play-services-basement-18.0.0/AndroidManifest.xml:21:9-23:69
+216            android:name="com.google.android.gms.version"
+216-->[com.google.android.gms:play-services-basement:18.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/1ff9203964a0283968a4c7fb09a23e04/jetified-play-services-basement-18.0.0/AndroidManifest.xml:22:13-58
+217            android:value="@integer/google_play_services_version" />
+217-->[com.google.android.gms:play-services-basement:18.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/1ff9203964a0283968a4c7fb09a23e04/jetified-play-services-basement-18.0.0/AndroidManifest.xml:23:13-66
+218
+219        <service
+219-->[com.google.android.datatransport:transport-backend-cct:3.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/bb54ddc9f60b4b910237ab68a930e6f4/jetified-transport-backend-cct-3.0.0/AndroidManifest.xml:29:9-35:19
+220            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+220-->[com.google.android.datatransport:transport-backend-cct:3.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/bb54ddc9f60b4b910237ab68a930e6f4/jetified-transport-backend-cct-3.0.0/AndroidManifest.xml:30:13-103
+221            android:exported="false" >
+221-->[com.google.android.datatransport:transport-backend-cct:3.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/bb54ddc9f60b4b910237ab68a930e6f4/jetified-transport-backend-cct-3.0.0/AndroidManifest.xml:31:13-37
+222            <meta-data
+222-->[com.google.android.datatransport:transport-backend-cct:3.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/bb54ddc9f60b4b910237ab68a930e6f4/jetified-transport-backend-cct-3.0.0/AndroidManifest.xml:32:13-34:39
+223                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+223-->[com.google.android.datatransport:transport-backend-cct:3.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/bb54ddc9f60b4b910237ab68a930e6f4/jetified-transport-backend-cct-3.0.0/AndroidManifest.xml:33:17-94
+224                android:value="cct" />
+224-->[com.google.android.datatransport:transport-backend-cct:3.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/bb54ddc9f60b4b910237ab68a930e6f4/jetified-transport-backend-cct-3.0.0/AndroidManifest.xml:34:17-36
+225        </service>
+226        <service
+226-->[com.google.android.datatransport:transport-runtime:3.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/64746f8425d04317f9734ed981b21fc7/jetified-transport-runtime-3.0.0/AndroidManifest.xml:26:9-30:19
+227            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+227-->[com.google.android.datatransport:transport-runtime:3.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/64746f8425d04317f9734ed981b21fc7/jetified-transport-runtime-3.0.0/AndroidManifest.xml:27:13-117
+228            android:exported="false"
+228-->[com.google.android.datatransport:transport-runtime:3.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/64746f8425d04317f9734ed981b21fc7/jetified-transport-runtime-3.0.0/AndroidManifest.xml:28:13-37
+229            android:permission="android.permission.BIND_JOB_SERVICE" >
+229-->[com.google.android.datatransport:transport-runtime:3.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/64746f8425d04317f9734ed981b21fc7/jetified-transport-runtime-3.0.0/AndroidManifest.xml:29:13-69
+230        </service>
+231
+232        <receiver
+232-->[com.google.android.datatransport:transport-runtime:3.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/64746f8425d04317f9734ed981b21fc7/jetified-transport-runtime-3.0.0/AndroidManifest.xml:32:9-34:40
+233            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+233-->[com.google.android.datatransport:transport-runtime:3.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/64746f8425d04317f9734ed981b21fc7/jetified-transport-runtime-3.0.0/AndroidManifest.xml:33:13-132
+234            android:exported="false" />
+234-->[com.google.android.datatransport:transport-runtime:3.0.0] /Users/mbpro/.gradle/caches/transforms-2/files-2.1/64746f8425d04317f9734ed981b21fc7/jetified-transport-runtime-3.0.0/AndroidManifest.xml:34:13-37
+235    </application>
+236
+237</manifest>

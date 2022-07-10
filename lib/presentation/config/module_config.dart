@@ -6,6 +6,7 @@ import '../../config/constant_config.dart';
 import '../core/app.dart';
 import '../module/auth/config/auth_module.dart';
 import '../module/common/config/common_module.dart';
+import '../module/menu/config/menu_module.dart';
 
 class AppModule extends Module {
   // Provide a list of dependencies to inject into your project
@@ -35,5 +36,6 @@ class AppModule extends Module {
   List<ModularRoute> get routes => [
         ModuleRoute('/', module: CommonModule()),
         ModuleRoute('/auth', module: AuthModule()),
+        ModuleRoute('/home', module: MenuModule()),
       ];
 }
