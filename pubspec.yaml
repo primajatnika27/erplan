@@ -1,0 +1,72 @@
+name: erplan
+description: Aplication for HR.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  logging: ^1.0.1
+  get_it: ^7.2.0
+  equatable: ^2.0.3
+  shared_preferences: ^2.0.6
+  dartz: ^0.10.0-nullsafety.1
+  flutter_bloc: ^7.1.0
+  webview_flutter: ^2.0.10
+  firebase_messaging: ^11.2.6
+  firebase_analytics: ^9.1.0
+  device_info_plus: ^3.2.1
+  permission_handler: ^8.1.4+2
+  flutter_modular: ^3.3.1
+  dio: ^4.0.0
+  double_back_to_close_app: ^2.0.1
+  flutter_sticky_header: ^0.6.0
+  pin_code_fields: ^7.3.0
+  expandable: ^5.0.1
+  fluttertoast: ^8.0.8
+  url_launcher: ^6.0.20
+  sliver_tools: ^0.2.5
+  flutter_screenutil: ^5.0.0+2
+  connectivity_plus: ^2.2.0
+  another_flushbar: ^1.10.28
+  cached_network_image: ^3.2.0
+  flutter_inappwebview: ^5.3.2
+  flutter_widget_from_html: ^0.8.5
+  flag: ^6.0.0
+  percent_indicator: ^4.0.0
+  youtube_player_flutter: ^8.0.0
+  timeago: ^3.2.2
+  image_sequence_animator: ^2.0.0
+  pull_to_refresh: ^2.0.0
+  web_socket_channel: ^2.1.0
+  syncfusion_flutter_charts: ^19.4.55
+  flutter_cupertino_datetime_picker: ^3.0.0
+  flutter_svg: ^1.0.3
+  fl_chart: ^0.46.0
+  charts_flutter: ^0.12.0
+  auto_size_text: ^3.0.0
+  image_picker: ^0.8.5
+  flutter_flipperkit:
+    git:
+      url: https://github.com/leanflutter/flutter_flipperkit
+      ref: master
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/language/

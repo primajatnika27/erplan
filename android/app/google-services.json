@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "779940688839",
+    "project_id": "domain-design-driven",
+    "storage_bucket": "domain-design-driven.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779940688839:android:b353ab43fb89e0090c5fe2",
+        "android_client_info": {
+          "package_name": "com.example.domain_driven_design"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779940688839-jnf9eiir5rq09mpmnk463ooumb8bfo1i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASSzdJIlIlSxR3EiQCU0YzePHRIwGsPH4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779940688839-jnf9eiir5rq09mpmnk463ooumb8bfo1i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:779940688839:android:64311a58374c57470c5fe2",
+        "android_client_info": {
+          "package_name": "com.foreximf.quickpro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "779940688839-jnf9eiir5rq09mpmnk463ooumb8bfo1i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASSzdJIlIlSxR3EiQCU0YzePHRIwGsPH4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "779940688839-jnf9eiir5rq09mpmnk463ooumb8bfo1i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

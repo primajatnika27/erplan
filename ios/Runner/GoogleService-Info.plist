@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>932220569686-apncd72s769i6c58t6rrc254pu6951t5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.932220569686-apncd72s769i6c58t6rrc254pu6951t5</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>932220569686-djmh3jujhucubi5p0iqpg7ov10s7ikee.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCC9ei3upmwlPvom0uR5EoepOpkg1vqpiM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>932220569686</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>id.quickpro.apps</string>
+	<key>PROJECT_ID</key>
+	<string>foreximfclient</string>
+	<key>STORAGE_BUCKET</key>
+	<string>foreximfclient.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:932220569686:ios:18171dd37c8befc9bb53f7</string>
+	<key>DATABASE_URL</key>
+	<string>https://foreximfclient.firebaseio.com</string>
+</dict>
+</plist>
