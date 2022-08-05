@@ -20,7 +20,9 @@ class _MainMenuPageState extends State<MainMenuPage> {
         elevation: 1.0,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Modular.to.pushNamed('/profile/');
+            },
             icon: Icon(Icons.account_circle_rounded),
           ),
         ],
@@ -29,15 +31,13 @@ class _MainMenuPageState extends State<MainMenuPage> {
         slivers: [
           SliverPadding(
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-            sliver: SliverGrid(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                childAspectRatio: 0.9,
-              ),
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return Card(
+            sliver: SliverGrid.count(
+              crossAxisCount: 3,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              childAspectRatio: 0.9,
+              children: [
+                Card(
                   child: InkWell(
                     onTap: () {
                       Modular.to.pushNamed('/home/employee');
@@ -63,8 +63,35 @@ class _MainMenuPageState extends State<MainMenuPage> {
                       ],
                     ),
                   ),
-                );
-              }, childCount: 1),
+                ),
+                Card(
+                  child: InkWell(
+                    onTap: () {
+                      Modular.to.pushNamed('/home/leaves');
+                    },
+                    child: Column(
+                      children: [
+                        Image.asset(
+                          'assets/images/menu/ic_menu_leaves.png',
+                          height: 80.h,
+                          width: 80.h,
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 10.h),
+                            child: Text(
+                              "Leaves",
+                              style: TextStyle(
+                                color: Colors.white54,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           SliverFillRemaining(

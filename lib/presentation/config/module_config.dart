@@ -7,6 +7,7 @@ import '../core/app.dart';
 import '../module/auth/config/auth_module.dart';
 import '../module/common/config/common_module.dart';
 import '../module/menu/config/menu_module.dart';
+import '../module/profile/config/profile_module.dart';
 
 class AppModule extends Module {
   // Provide a list of dependencies to inject into your project
@@ -37,5 +38,6 @@ class AppModule extends Module {
         ModuleRoute('/', module: CommonModule()),
         ModuleRoute('/auth', module: AuthModule()),
         ModuleRoute('/home', module: MenuModule()),
+        ModuleRoute('/profile', module: ProfileModule()),
       ];
 }

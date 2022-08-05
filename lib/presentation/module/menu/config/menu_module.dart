@@ -1,10 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../../data/repository_impl/employee_repository_impl.dart';
-import '../../../../domain/repository/employee_repository.dart';
-import '../../../core/app.dart';
-import '../presentation/employee/bloc.dart';
 import '../presentation/employee/page.dart';
+import '../presentation/leaves/page.dart';
+import '../presentation/leaves/presentation/add_leaves.dart';
 import '../presentation/main_menu/page.dart';
 
 class MenuModule extends Module {
@@ -22,6 +20,16 @@ class MenuModule extends Module {
           '/employee',
           child: (_, args) => EmployeeMenuPage(),
           transition: TransitionType.rightToLeft,
+        ),
+        ChildRoute(
+          '/leaves',
+          child: (_, args) => LeavesMenuPage(),
+          transition: TransitionType.rightToLeft,
+        ),
+        ChildRoute(
+          '/leaves/add',
+          child: (_, args) => AddLeavesPage(),
+          transition: TransitionType.downToUp,
         ),
       ];
 }
