@@ -1,4 +1,0 @@
-io/flutter/plugins/GeneratedPluginRegistrant.java
- io.flutter.plugins.GeneratedPluginRegistrant
-com/foreximf/quickpro/BuildConfig.java
- com.foreximf.quickpro.BuildConfig
