@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
 
@@ -38,6 +38,10 @@ class EmployeeFailedState extends EmployeeState {
   List<Object?> get props => [code, message];
 }
 
+class EmployeeRegisterGoState extends EmployeeState {
+  EmployeeRegisterGoState() : super();
+}
+
 class EmployeeSuccessState extends EmployeeState {
   EmployeeSuccessState({List<EmployeeEntity>? employee})
       : super(employee: employee);
@@ -48,9 +52,14 @@ class EmployeeBloc extends Cubit<EmployeeState> {
 
   final Logger logger = Logger('EmployeeBloc');
 
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   bool isSearchEmployee = false;
   List<EmployeeEntity>? listEmployee;
   List<EmployeeEntity>? listSearchEmployee;
+
+  TextEditingController identityNumberController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
 
   EmployeeBloc({required this.repository}) : super(EmployeeInitialState());
 

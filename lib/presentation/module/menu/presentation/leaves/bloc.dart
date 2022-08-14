@@ -24,6 +24,10 @@ class LeaveTypeLoadingState extends LeaveState {
   LeaveTypeLoadingState() : super();
 }
 
+class SaveLeaveLoadingState extends LeaveState {
+  SaveLeaveLoadingState() : super();
+}
+
 class LeaveFailedState extends LeaveState {
   final int code;
   final String message;
@@ -56,6 +60,7 @@ class LeaveBloc extends Cubit<LeaveState> {
   final LeaveRepository repository;
 
   final Logger logger = Logger('EmployeeBloc');
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   ApprovalLeave? approvalLeave;
   EmployeeEntity? approvalHrHeadEntity,
@@ -90,6 +95,8 @@ class LeaveBloc extends Cubit<LeaveState> {
   LeaveBloc({required this.repository}) : super(LeaveInitialState());
 
   Future<void> getLeaveType() async {
+    emit(LeaveTypeLoadingState());
+
     logger.fine('Get Leave Type');
 
     Either<Failure, List<LeaveTypeEntity>> result =
@@ -112,10 +119,17 @@ class LeaveBloc extends Cubit<LeaveState> {
   }
 
   Future<void> saveLeave() async {
-    emit(LeaveTypeLoadingState());
-
     logger.fine('Save Leave');
     LeaveEntity? entity;
+
+    formKey.currentState!.save();
+
+    if (!formKey.currentState!.validate()) {
+      return;
+    }
+
+    emit(SaveLeaveLoadingState());
+
     try {
       entity = LeaveEntity(
         idEmployee: App.main.idUser,

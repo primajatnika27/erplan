@@ -84,7 +84,7 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
             BlocListener<LeaveBloc, LeaveState>(
               bloc: _leaveBloc,
               listener: (context, state) {
-                if (state is LeaveTypeLoadingState) {
+                if (state is SaveLeaveLoadingState) {
                   FocusScope.of(context).requestFocus(FocusNode());
                   showDialog(
                     context: context,
@@ -285,664 +285,669 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
               },
             ),
           ],
-          child: CustomScrollView(
-            slivers: [
-              SliverList(
-                delegate: SliverChildListDelegate([
-                  SizedBox(height: 20.h),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w),
-                    child: TextFormField(
-                      controller: _leaveBloc.leaveTypeController,
-                      readOnly: true,
-                      onTap: () {
-                        _leaveBloc.getLeaveType();
-                      },
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        color: Colors.white,
-                      ),
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.document_scanner,
-                          size: 22.h,
-                        ),
-                        suffixIcon: Icon(
-                          Icons.chevron_right_outlined,
-                          size: 22.h,
-                        ),
-                        label: Text("Leave type"),
-                        labelStyle: TextStyle(
-                          color: Colors.white60,
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        isDense: true,
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 5.h,
-                        ),
-                        hintText: 'Please select',
-                        hintStyle: TextStyle(
-                          fontSize: 14.sp,
-                          color: Color.fromRGBO(120, 125, 131, 1),
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if (value!.trim().isEmpty) {
-                          return 'username is required.';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 20.h),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w),
-                    child: TextFormField(
-                      controller: _leaveBloc.approvalHrCheckerController,
-                      readOnly: true,
-                      onTap: () {
-                        _leaveBloc.approvalLeave = ApprovalLeave.HRChecker;
-                        _employeeBloc.getAllEmployee();
-                      },
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        color: Colors.white,
-                      ),
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.people,
-                          size: 22.h,
-                        ),
-                        suffixIcon: Icon(
-                          Icons.chevron_right_outlined,
-                          size: 22.h,
-                        ),
-                        label: Text("Approval HR Checker"),
-                        labelStyle: TextStyle(
-                          color: Colors.white60,
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        isDense: true,
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 5.h,
-                        ),
-                        hintText: 'Please select',
-                        hintStyle: TextStyle(
-                          fontSize: 14.sp,
-                          color: Color.fromRGBO(120, 125, 131, 1),
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if (value!.trim().isEmpty) {
-                          return 'username is required.';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 20.h),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w),
-                    child: TextFormField(
-                      controller: _leaveBloc.approvalHrHeadController,
-                      readOnly: true,
-                      onTap: () {
-                        _leaveBloc.approvalLeave = ApprovalLeave.HRHead;
-                        _employeeBloc.getAllEmployee();
-                      },
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        color: Colors.white,
-                      ),
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.people,
-                          size: 22.h,
-                        ),
-                        suffixIcon: Icon(
-                          Icons.chevron_right_outlined,
-                          size: 22.h,
-                        ),
-                        label: Text("Approval HR Head"),
-                        labelStyle: TextStyle(
-                          color: Colors.white60,
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        isDense: true,
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 5.h,
-                        ),
-                        hintText: 'Please select',
-                        hintStyle: TextStyle(
-                          fontSize: 14.sp,
-                          color: Color.fromRGBO(120, 125, 131, 1),
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if (value!.trim().isEmpty) {
-                          return 'username is required.';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 20.h),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w),
-                    child: TextFormField(
-                      controller: _leaveBloc.approvalSpvController,
-                      readOnly: true,
-                      onTap: () {
-                        _leaveBloc.approvalLeave = ApprovalLeave.SPV;
-                        _employeeBloc.getAllEmployee();
-                      },
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        color: Colors.white,
-                      ),
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.people,
-                          size: 22.h,
-                        ),
-                        suffixIcon: Icon(
-                          Icons.chevron_right_outlined,
-                          size: 22.h,
-                        ),
-                        label: Text("Approval SPV"),
-                        labelStyle: TextStyle(
-                          color: Colors.white60,
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        isDense: true,
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 5.h,
-                        ),
-                        hintText: 'Please select',
-                        hintStyle: TextStyle(
-                          fontSize: 14.sp,
-                          color: Color.fromRGBO(120, 125, 131, 1),
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if (value!.trim().isEmpty) {
-                          return 'username is required.';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 20.h),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w),
-                    child: TextFormField(
-                      controller: _leaveBloc.approvalDirectionController,
-                      readOnly: true,
-                      onTap: () {
-                        _leaveBloc.approvalLeave = ApprovalLeave.Direction;
-                        _employeeBloc.getAllEmployee();
-                      },
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        color: Colors.white,
-                      ),
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.people,
-                          size: 22.h,
-                        ),
-                        suffixIcon: Icon(
-                          Icons.chevron_right_outlined,
-                          size: 22.h,
-                        ),
-                        label: Text("Approval Direction"),
-                        labelStyle: TextStyle(
-                          color: Colors.white60,
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        isDense: true,
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 5.h,
-                        ),
-                        hintText: 'Please select',
-                        hintStyle: TextStyle(
-                          fontSize: 14.sp,
-                          color: Color.fromRGBO(120, 125, 131, 1),
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if (value!.trim().isEmpty) {
-                          return 'username is required.';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 25.h),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: TextFormField(
-                            controller: _leaveBloc.leaveFromController,
-                            readOnly: true,
-                            onTap: () async {
-                              DateTime? pickedDate = await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(2000),
-                                lastDate: DateTime(2100),
-                              );
-
-                              if (pickedDate != null) {
-                                String formattedDate =
-                                    DateFormat('yyyy-MM-dd').format(pickedDate);
-
-                                setState(() {
-                                  _leaveBloc.leaveFromController.text =
-                                      formattedDate; //set output date to TextField value.
-                                });
-                              }
-                            },
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              color: Colors.white,
-                            ),
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.date_range,
-                                size: 22.h,
-                              ),
-                              suffixIcon: Icon(
-                                Icons.chevron_right_outlined,
-                                size: 22.h,
-                              ),
-                              label: Text("From"),
-                              labelStyle: TextStyle(
-                                color: Colors.white60,
-                              ),
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
-                              isDense: true,
-                              contentPadding: EdgeInsets.symmetric(
-                                vertical: 5.h,
-                              ),
-                              hintText: 'Date',
-                              hintStyle: TextStyle(
-                                fontSize: 14.sp,
-                                color: Color.fromRGBO(120, 125, 131, 1),
-                              ),
-                              border: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white54,
-                                ),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white54,
-                                ),
-                              ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white54,
-                                ),
-                              ),
-                            ),
-                            keyboardType: TextInputType.emailAddress,
-                            validator: (value) {
-                              if (value!.trim().isEmpty) {
-                                return 'username is required.';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                        SizedBox(width: 20.w),
-                        Expanded(
-                          child: TextFormField(
-                            controller: _leaveBloc.leaveToController,
-                            readOnly: true,
-                            onTap: () async {
-                              DateTime? pickedDate = await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(2000),
-                                lastDate: DateTime(2100),
-                              );
-
-                              if (pickedDate != null) {
-                                String formattedDate =
-                                    DateFormat('yyyy-MM-dd').format(pickedDate);
-
-                                setState(() {
-                                  _leaveBloc.leaveToController.text =
-                                      formattedDate; //set output date to TextField value.
-                                });
-                              }
-                            },
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              color: Colors.white,
-                            ),
-                            decoration: InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.date_range,
-                                size: 22.h,
-                              ),
-                              suffixIcon: Icon(
-                                Icons.chevron_right_outlined,
-                                size: 22.h,
-                              ),
-                              label: Text("To"),
-                              labelStyle: TextStyle(
-                                color: Colors.white60,
-                              ),
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
-                              isDense: true,
-                              contentPadding: EdgeInsets.symmetric(
-                                vertical: 5.h,
-                              ),
-                              hintText: 'Date',
-                              hintStyle: TextStyle(
-                                fontSize: 14.sp,
-                                color: Color.fromRGBO(120, 125, 131, 1),
-                              ),
-                              border: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white54,
-                                ),
-                              ),
-                              focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white54,
-                                ),
-                              ),
-                              enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.white54,
-                                ),
-                              ),
-                            ),
-                            keyboardType: TextInputType.emailAddress,
-                            validator: (value) {
-                              if (value!.trim().isEmpty) {
-                                return 'username is required.';
-                              }
-                              return null;
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 20.h),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w),
-                    child: TextFormField(
-                      controller: _leaveBloc.replaceEmployeeController,
-                      readOnly: true,
-                      onTap: () {
-                        _leaveBloc.approvalLeave = ApprovalLeave.Replace;
-                        _employeeBloc.getAllEmployee();
-                      },
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        color: Colors.white,
-                      ),
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.people,
-                          size: 22.h,
-                        ),
-                        suffixIcon: Icon(
-                          Icons.chevron_right_outlined,
-                          size: 22.h,
-                        ),
-                        label: Text("Replace Employee"),
-                        labelStyle: TextStyle(
-                          color: Colors.white60,
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        isDense: true,
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 5.h,
-                        ),
-                        hintText: 'Please select',
-                        hintStyle: TextStyle(
-                          fontSize: 14.sp,
-                          color: Color.fromRGBO(120, 125, 131, 1),
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if (value!.trim().isEmpty) {
-                          return 'username is required.';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 25.h),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w),
-                    child: TextFormField(
-                      controller: _leaveBloc.returnDateController,
-                      readOnly: true,
-                      onTap: () async {
-                        DateTime? pickedDate = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(2000),
-                          lastDate: DateTime(2100),
-                        );
-
-                        if (pickedDate != null) {
-                          String formattedDate =
-                              DateFormat('yyyy-MM-dd').format(pickedDate);
-
-                          setState(() {
-                            _leaveBloc.returnDateController.text =
-                                formattedDate; //set output date to TextField value.
-                          });
-                        }
-                      },
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        color: Colors.white,
-                      ),
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.date_range,
-                          size: 22.h,
-                        ),
-                        suffixIcon: Icon(
-                          Icons.chevron_right_outlined,
-                          size: 22.h,
-                        ),
-                        label: Text("Return Work"),
-                        labelStyle: TextStyle(
-                          color: Colors.white60,
-                        ),
-                        floatingLabelBehavior: FloatingLabelBehavior.always,
-                        isDense: true,
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 5.h,
-                        ),
-                        hintText: 'Date',
-                        hintStyle: TextStyle(
-                          fontSize: 14.sp,
-                          color: Color.fromRGBO(120, 125, 131, 1),
-                        ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if (value!.trim().isEmpty) {
-                          return 'username is required.';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  SizedBox(height: 25.h),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15.w),
-                    child: TextFormField(
-                      controller: _leaveBloc.reasonController,
-                      maxLines: 2,
-                      style: TextStyle(
-                        fontSize: 16.sp,
-                        color: Colors.white,
-                      ),
-                      decoration: InputDecoration(
-                        isDense: true,
-                        contentPadding: EdgeInsets.symmetric(
-                          vertical: 5.h,
-                        ),
-                        hintText: 'Type your leave reason',
-                        hintStyle: TextStyle(
+          child: Form(
+            key: _leaveBloc.formKey,
+            child: CustomScrollView(
+              slivers: [
+                SliverList(
+                  delegate: SliverChildListDelegate([
+                    SizedBox(height: 20.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: TextFormField(
+                        controller: _leaveBloc.leaveTypeController,
+                        readOnly: true,
+                        onTap: () {
+                          _leaveBloc.getLeaveType();
+                        },
+                        style: TextStyle(
                           fontSize: 12.sp,
-                          color: Color.fromRGBO(120, 125, 131, 1),
+                          color: Colors.white,
                         ),
-                        border: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.document_scanner,
+                            size: 22.h,
+                          ),
+                          suffixIcon: Icon(
+                            Icons.chevron_right_outlined,
+                            size: 22.h,
+                          ),
+                          label: Text("Leave type"),
+                          labelStyle: TextStyle(
+                            color: Colors.white60,
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 5.h,
+                          ),
+                          hintText: 'Please select',
+                          hintStyle: TextStyle(
+                            fontSize: 14.sp,
+                            color: Color.fromRGBO(120, 125, 131, 1),
+                          ),
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
                           ),
                         ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white54,
-                          ),
-                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value!.trim().isEmpty) {
+                            return '*required';
+                          }
+                          return null;
+                        },
                       ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if (value!.trim().isEmpty) {
-                          return 'username is required.';
-                        }
-                        return null;
-                      },
                     ),
-                  ),
-                ]),
-              ),
-            ],
+                    SizedBox(height: 20.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: TextFormField(
+                        controller: _leaveBloc.approvalHrCheckerController,
+                        readOnly: true,
+                        onTap: () {
+                          _leaveBloc.approvalLeave = ApprovalLeave.HRChecker;
+                          _employeeBloc.getAllEmployee();
+                        },
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color: Colors.white,
+                        ),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.people,
+                            size: 22.h,
+                          ),
+                          suffixIcon: Icon(
+                            Icons.chevron_right_outlined,
+                            size: 22.h,
+                          ),
+                          label: Text("Approval HR Checker"),
+                          labelStyle: TextStyle(
+                            color: Colors.white60,
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 5.h,
+                          ),
+                          hintText: 'Please select',
+                          hintStyle: TextStyle(
+                            fontSize: 14.sp,
+                            color: Color.fromRGBO(120, 125, 131, 1),
+                          ),
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value!.trim().isEmpty) {
+                            return '*required';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 20.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: TextFormField(
+                        controller: _leaveBloc.approvalHrHeadController,
+                        readOnly: true,
+                        onTap: () {
+                          _leaveBloc.approvalLeave = ApprovalLeave.HRHead;
+                          _employeeBloc.getAllEmployee();
+                        },
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color: Colors.white,
+                        ),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.people,
+                            size: 22.h,
+                          ),
+                          suffixIcon: Icon(
+                            Icons.chevron_right_outlined,
+                            size: 22.h,
+                          ),
+                          label: Text("Approval HR Head"),
+                          labelStyle: TextStyle(
+                            color: Colors.white60,
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 5.h,
+                          ),
+                          hintText: 'Please select',
+                          hintStyle: TextStyle(
+                            fontSize: 14.sp,
+                            color: Color.fromRGBO(120, 125, 131, 1),
+                          ),
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value!.trim().isEmpty) {
+                            return '*required';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 20.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: TextFormField(
+                        controller: _leaveBloc.approvalSpvController,
+                        readOnly: true,
+                        onTap: () {
+                          _leaveBloc.approvalLeave = ApprovalLeave.SPV;
+                          _employeeBloc.getAllEmployee();
+                        },
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color: Colors.white,
+                        ),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.people,
+                            size: 22.h,
+                          ),
+                          suffixIcon: Icon(
+                            Icons.chevron_right_outlined,
+                            size: 22.h,
+                          ),
+                          label: Text("Approval SPV"),
+                          labelStyle: TextStyle(
+                            color: Colors.white60,
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 5.h,
+                          ),
+                          hintText: 'Please select',
+                          hintStyle: TextStyle(
+                            fontSize: 14.sp,
+                            color: Color.fromRGBO(120, 125, 131, 1),
+                          ),
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value!.trim().isEmpty) {
+                            return '*required';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 20.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: TextFormField(
+                        controller: _leaveBloc.approvalDirectionController,
+                        readOnly: true,
+                        onTap: () {
+                          _leaveBloc.approvalLeave = ApprovalLeave.Direction;
+                          _employeeBloc.getAllEmployee();
+                        },
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color: Colors.white,
+                        ),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.people,
+                            size: 22.h,
+                          ),
+                          suffixIcon: Icon(
+                            Icons.chevron_right_outlined,
+                            size: 22.h,
+                          ),
+                          label: Text("Approval Direction"),
+                          labelStyle: TextStyle(
+                            color: Colors.white60,
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 5.h,
+                          ),
+                          hintText: 'Please select',
+                          hintStyle: TextStyle(
+                            fontSize: 14.sp,
+                            color: Color.fromRGBO(120, 125, 131, 1),
+                          ),
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value!.trim().isEmpty) {
+                            return '*required';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 25.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: TextFormField(
+                              controller: _leaveBloc.leaveFromController,
+                              readOnly: true,
+                              onTap: () async {
+                                DateTime? pickedDate = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(2000),
+                                  lastDate: DateTime(2100),
+                                );
+
+                                if (pickedDate != null) {
+                                  String formattedDate =
+                                      DateFormat('yyyy-MM-dd')
+                                          .format(pickedDate);
+
+                                  setState(() {
+                                    _leaveBloc.leaveFromController.text =
+                                        formattedDate; //set output date to TextField value.
+                                  });
+                                }
+                              },
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                color: Colors.white,
+                              ),
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.date_range,
+                                  size: 22.h,
+                                ),
+                                suffixIcon: Icon(
+                                  Icons.chevron_right_outlined,
+                                  size: 22.h,
+                                ),
+                                label: Text("From"),
+                                labelStyle: TextStyle(
+                                  color: Colors.white60,
+                                ),
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                isDense: true,
+                                contentPadding: EdgeInsets.symmetric(
+                                  vertical: 5.h,
+                                ),
+                                hintText: 'Date',
+                                hintStyle: TextStyle(
+                                  fontSize: 14.sp,
+                                  color: Color.fromRGBO(120, 125, 131, 1),
+                                ),
+                                border: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.white54,
+                                  ),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.white54,
+                                  ),
+                                ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.white54,
+                                  ),
+                                ),
+                              ),
+                              keyboardType: TextInputType.emailAddress,
+                              validator: (value) {
+                                if (value!.trim().isEmpty) {
+                                  return '*required';
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                          SizedBox(width: 20.w),
+                          Expanded(
+                            child: TextFormField(
+                              controller: _leaveBloc.leaveToController,
+                              readOnly: true,
+                              onTap: () async {
+                                DateTime? pickedDate = await showDatePicker(
+                                  context: context,
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(2000),
+                                  lastDate: DateTime(2100),
+                                );
+
+                                if (pickedDate != null) {
+                                  String formattedDate =
+                                      DateFormat('yyyy-MM-dd')
+                                          .format(pickedDate);
+
+                                  setState(() {
+                                    _leaveBloc.leaveToController.text =
+                                        formattedDate; //set output date to TextField value.
+                                  });
+                                }
+                              },
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                color: Colors.white,
+                              ),
+                              decoration: InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.date_range,
+                                  size: 22.h,
+                                ),
+                                suffixIcon: Icon(
+                                  Icons.chevron_right_outlined,
+                                  size: 22.h,
+                                ),
+                                label: Text("To"),
+                                labelStyle: TextStyle(
+                                  color: Colors.white60,
+                                ),
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                isDense: true,
+                                contentPadding: EdgeInsets.symmetric(
+                                  vertical: 5.h,
+                                ),
+                                hintText: 'Date',
+                                hintStyle: TextStyle(
+                                  fontSize: 14.sp,
+                                  color: Color.fromRGBO(120, 125, 131, 1),
+                                ),
+                                border: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.white54,
+                                  ),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.white54,
+                                  ),
+                                ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.white54,
+                                  ),
+                                ),
+                              ),
+                              keyboardType: TextInputType.emailAddress,
+                              validator: (value) {
+                                if (value!.trim().isEmpty) {
+                                  return '*required';
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 20.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: TextFormField(
+                        controller: _leaveBloc.replaceEmployeeController,
+                        readOnly: true,
+                        onTap: () {
+                          _leaveBloc.approvalLeave = ApprovalLeave.Replace;
+                          _employeeBloc.getAllEmployee();
+                        },
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color: Colors.white,
+                        ),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.people,
+                            size: 22.h,
+                          ),
+                          suffixIcon: Icon(
+                            Icons.chevron_right_outlined,
+                            size: 22.h,
+                          ),
+                          label: Text("Replace Employee"),
+                          labelStyle: TextStyle(
+                            color: Colors.white60,
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 5.h,
+                          ),
+                          hintText: 'Please select',
+                          hintStyle: TextStyle(
+                            fontSize: 14.sp,
+                            color: Color.fromRGBO(120, 125, 131, 1),
+                          ),
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value!.trim().isEmpty) {
+                            return '*required';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 25.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: TextFormField(
+                        controller: _leaveBloc.returnDateController,
+                        readOnly: true,
+                        onTap: () async {
+                          DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(2000),
+                            lastDate: DateTime(2100),
+                          );
+
+                          if (pickedDate != null) {
+                            String formattedDate =
+                                DateFormat('yyyy-MM-dd').format(pickedDate);
+
+                            setState(() {
+                              _leaveBloc.returnDateController.text =
+                                  formattedDate; //set output date to TextField value.
+                            });
+                          }
+                        },
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color: Colors.white,
+                        ),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.date_range,
+                            size: 22.h,
+                          ),
+                          suffixIcon: Icon(
+                            Icons.chevron_right_outlined,
+                            size: 22.h,
+                          ),
+                          label: Text("Return Work"),
+                          labelStyle: TextStyle(
+                            color: Colors.white60,
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 5.h,
+                          ),
+                          hintText: 'Date',
+                          hintStyle: TextStyle(
+                            fontSize: 14.sp,
+                            color: Color.fromRGBO(120, 125, 131, 1),
+                          ),
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value!.trim().isEmpty) {
+                            return '*required';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 25.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: TextFormField(
+                        controller: _leaveBloc.reasonController,
+                        maxLines: 2,
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          color: Colors.white,
+                        ),
+                        decoration: InputDecoration(
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 5.h,
+                          ),
+                          hintText: 'Type your leave reason',
+                          hintStyle: TextStyle(
+                            fontSize: 12.sp,
+                            color: Color.fromRGBO(120, 125, 131, 1),
+                          ),
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value!.trim().isEmpty) {
+                            return '*required';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                  ]),
+                ),
+              ],
+            ),
           ),
         ),
       ),
