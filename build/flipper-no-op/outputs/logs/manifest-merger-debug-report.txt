@@ -1,0 +1,19 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\sdk\flutter_2.10.0\.pub-cache\git\flutter_flipperkit-1c36888f3b2c79be70cb71ed6b3c62ad6db1418d\android\flipper-no-op\src\main\AndroidManifest.xml:1:1-3:12
+INJECTED from C:\sdk\flutter_2.10.0\.pub-cache\git\flutter_flipperkit-1c36888f3b2c79be70cb71ed6b3c62ad6db1418d\android\flipper-no-op\src\main\AndroidManifest.xml:1:1-3:12
+INJECTED from C:\sdk\flutter_2.10.0\.pub-cache\git\flutter_flipperkit-1c36888f3b2c79be70cb71ed6b3c62ad6db1418d\android\flipper-no-op\src\main\AndroidManifest.xml:1:1-3:12
+	package
+		ADDED from C:\sdk\flutter_2.10.0\.pub-cache\git\flutter_flipperkit-1c36888f3b2c79be70cb71ed6b3c62ad6db1418d\android\flipper-no-op\src\main\AndroidManifest.xml:2:3-25
+		INJECTED from C:\sdk\flutter_2.10.0\.pub-cache\git\flutter_flipperkit-1c36888f3b2c79be70cb71ed6b3c62ad6db1418d\android\flipper-no-op\src\main\AndroidManifest.xml
+		INJECTED from C:\sdk\flutter_2.10.0\.pub-cache\git\flutter_flipperkit-1c36888f3b2c79be70cb71ed6b3c62ad6db1418d\android\flipper-no-op\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\sdk\flutter_2.10.0\.pub-cache\git\flutter_flipperkit-1c36888f3b2c79be70cb71ed6b3c62ad6db1418d\android\flipper-no-op\src\main\AndroidManifest.xml:1:11-69
+uses-sdk
+INJECTED from C:\sdk\flutter_2.10.0\.pub-cache\git\flutter_flipperkit-1c36888f3b2c79be70cb71ed6b3c62ad6db1418d\android\flipper-no-op\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\sdk\flutter_2.10.0\.pub-cache\git\flutter_flipperkit-1c36888f3b2c79be70cb71ed6b3c62ad6db1418d\android\flipper-no-op\src\main\AndroidManifest.xml
+INJECTED from C:\sdk\flutter_2.10.0\.pub-cache\git\flutter_flipperkit-1c36888f3b2c79be70cb71ed6b3c62ad6db1418d\android\flipper-no-op\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\sdk\flutter_2.10.0\.pub-cache\git\flutter_flipperkit-1c36888f3b2c79be70cb71ed6b3c62ad6db1418d\android\flipper-no-op\src\main\AndroidManifest.xml
+		ADDED from C:\sdk\flutter_2.10.0\.pub-cache\git\flutter_flipperkit-1c36888f3b2c79be70cb71ed6b3c62ad6db1418d\android\flipper-no-op\src\main\AndroidManifest.xml
+		INJECTED from C:\sdk\flutter_2.10.0\.pub-cache\git\flutter_flipperkit-1c36888f3b2c79be70cb71ed6b3c62ad6db1418d\android\flipper-no-op\src\main\AndroidManifest.xml

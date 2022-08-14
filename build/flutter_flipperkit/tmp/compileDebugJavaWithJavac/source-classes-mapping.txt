@@ -1,0 +1,10 @@
+org/leanflutter/plugins/flutter_flipperkit/BuildConfig.java
+ org.leanflutter.plugins.flutter_flipperkit.BuildConfig
+org/leanflutter/plugins/flutter_flipperkit/plugins/FlipperReduxInspectorPlugin.java
+ org.leanflutter.plugins.flutter_flipperkit.plugins.FlipperReduxInspectorPlugin
+org/leanflutter/plugins/flutter_flipperkit/plugins/FlipperDatabaseBrowserPlugin.java
+ org.leanflutter.plugins.flutter_flipperkit.plugins.FlipperDatabaseBrowserPlugin
+ org.leanflutter.plugins.flutter_flipperkit.plugins.FlipperDatabaseBrowserPlugin$1
+ org.leanflutter.plugins.flutter_flipperkit.plugins.FlipperDatabaseBrowserPlugin$1$1
+org/leanflutter/plugins/flutter_flipperkit/FlutterFlipperkitPlugin.java
+ org.leanflutter.plugins.flutter_flipperkit.FlutterFlipperkitPlugin

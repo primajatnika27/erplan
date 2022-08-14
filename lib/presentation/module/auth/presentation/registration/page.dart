@@ -50,7 +50,7 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
             );
           } else if (state is AuthRegisterFailedState) {
             Navigator.of(context).pop();
-            showFlushbar(context, state.message);
+            showFlushbar(context, state.message, isError: true);
           } else if (state is AuthRegisterGoState) {
             try {
               await Future.delayed(Duration(seconds: 1));
@@ -91,7 +91,8 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
                                 Expanded(
                                   flex: 2,
                                   child: TextFormField(
-                                    controller: _authRegisterBloc.usernameController,
+                                    controller:
+                                        _authRegisterBloc.usernameController,
                                     style: TextStyle(
                                       fontSize: 16.sp,
                                       color: Colors.white,
@@ -109,13 +110,13 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
                                       border: UnderlineInputBorder(
                                         borderSide: BorderSide(
                                           color:
-                                          Color.fromRGBO(44, 150, 213, 1),
+                                              Color.fromRGBO(44, 150, 213, 1),
                                         ),
                                       ),
                                       enabledBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
                                           color:
-                                          Color.fromRGBO(44, 150, 213, 1),
+                                              Color.fromRGBO(44, 150, 213, 1),
                                         ),
                                       ),
                                     ),
@@ -148,7 +149,8 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
                                 Expanded(
                                   flex: 2,
                                   child: TextFormField(
-                                    controller: _authRegisterBloc.emailController,
+                                    controller:
+                                        _authRegisterBloc.emailController,
                                     style: TextStyle(
                                       fontSize: 16.sp,
                                       color: Colors.white,
@@ -166,13 +168,13 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
                                       border: UnderlineInputBorder(
                                         borderSide: BorderSide(
                                           color:
-                                          Color.fromRGBO(44, 150, 213, 1),
+                                              Color.fromRGBO(44, 150, 213, 1),
                                         ),
                                       ),
                                       enabledBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
                                           color:
-                                          Color.fromRGBO(44, 150, 213, 1),
+                                              Color.fromRGBO(44, 150, 213, 1),
                                         ),
                                       ),
                                     ),
@@ -206,7 +208,7 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
                                   flex: 2,
                                   child: TextFormField(
                                     controller:
-                                    _authRegisterBloc.passwordController,
+                                        _authRegisterBloc.passwordController,
                                     obscureText: isObscurePassword,
                                     style: TextStyle(
                                       fontSize: 16.sp,
@@ -226,41 +228,41 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
                                           minWidth: 14.w, minHeight: 16.h),
                                       suffixIcon: isObscurePassword
                                           ? GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            isObscurePassword = false;
-                                          });
-                                        },
-                                        child: Icon(
-                                          Icons.remove_red_eye_outlined,
-                                          color: Color.fromRGBO(
-                                              120, 125, 131, 1),
-                                        ),
-                                      )
+                                              onTap: () {
+                                                setState(() {
+                                                  isObscurePassword = false;
+                                                });
+                                              },
+                                              child: Icon(
+                                                Icons.remove_red_eye_outlined,
+                                                color: Color.fromRGBO(
+                                                    120, 125, 131, 1),
+                                              ),
+                                            )
                                           : GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            isObscurePassword = true;
-                                          });
-                                        },
-                                        child: Icon(
-                                          Icons.remove_red_eye,
-                                          color: Color.fromRGBO(
-                                              120, 125, 131, 1),
-                                        ),
-                                      ),
+                                              onTap: () {
+                                                setState(() {
+                                                  isObscurePassword = true;
+                                                });
+                                              },
+                                              child: Icon(
+                                                Icons.remove_red_eye,
+                                                color: Color.fromRGBO(
+                                                    120, 125, 131, 1),
+                                              ),
+                                            ),
                                       suffixIconConstraints: BoxConstraints(
                                           minWidth: 14.w, minHeight: 16.h),
                                       border: UnderlineInputBorder(
                                         borderSide: BorderSide(
                                           color:
-                                          Color.fromRGBO(44, 150, 213, 1),
+                                              Color.fromRGBO(44, 150, 213, 1),
                                         ),
                                       ),
                                       enabledBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
                                           color:
-                                          Color.fromRGBO(44, 150, 213, 1),
+                                              Color.fromRGBO(44, 150, 213, 1),
                                         ),
                                       ),
                                     ),
@@ -293,7 +295,7 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
                                   flex: 2,
                                   child: TextFormField(
                                     controller:
-                                    _authRegisterBloc.rePasswordController,
+                                        _authRegisterBloc.rePasswordController,
                                     obscureText: isObscurePassword,
                                     style: TextStyle(
                                       fontSize: 16.sp,
@@ -313,41 +315,41 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
                                           minWidth: 14.w, minHeight: 16.h),
                                       suffixIcon: isObscureRePassword
                                           ? GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            isObscureRePassword = false;
-                                          });
-                                        },
-                                        child: Icon(
-                                          Icons.remove_red_eye_outlined,
-                                          color: Color.fromRGBO(
-                                              120, 125, 131, 1),
-                                        ),
-                                      )
+                                              onTap: () {
+                                                setState(() {
+                                                  isObscureRePassword = false;
+                                                });
+                                              },
+                                              child: Icon(
+                                                Icons.remove_red_eye_outlined,
+                                                color: Color.fromRGBO(
+                                                    120, 125, 131, 1),
+                                              ),
+                                            )
                                           : GestureDetector(
-                                        onTap: () {
-                                          setState(() {
-                                            isObscureRePassword = true;
-                                          });
-                                        },
-                                        child: Icon(
-                                          Icons.remove_red_eye,
-                                          color: Color.fromRGBO(
-                                              120, 125, 131, 1),
-                                        ),
-                                      ),
+                                              onTap: () {
+                                                setState(() {
+                                                  isObscureRePassword = true;
+                                                });
+                                              },
+                                              child: Icon(
+                                                Icons.remove_red_eye,
+                                                color: Color.fromRGBO(
+                                                    120, 125, 131, 1),
+                                              ),
+                                            ),
                                       suffixIconConstraints: BoxConstraints(
                                           minWidth: 14.w, minHeight: 16.h),
                                       border: UnderlineInputBorder(
                                         borderSide: BorderSide(
                                           color:
-                                          Color.fromRGBO(44, 150, 213, 1),
+                                              Color.fromRGBO(44, 150, 213, 1),
                                         ),
                                       ),
                                       enabledBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
                                           color:
-                                          Color.fromRGBO(44, 150, 213, 1),
+                                              Color.fromRGBO(44, 150, 213, 1),
                                         ),
                                       ),
                                     ),
@@ -402,7 +404,7 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
                           child: ElevatedButton(
                             style: ButtonStyle(
                               padding: MaterialStateProperty.resolveWith(
-                                    (states) => EdgeInsets.symmetric(
+                                (states) => EdgeInsets.symmetric(
                                   horizontal: 6.w,
                                   vertical: 10.w,
                                 ),

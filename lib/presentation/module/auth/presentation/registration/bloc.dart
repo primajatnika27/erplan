@@ -73,16 +73,22 @@ class AuthRegisterBloc extends Cubit<AuthRegisterState> {
       : super(AuthRegisterInitialState());
 
   Future<void> register() async {
+    emit(AuthRegisterLoadingState());
+
     formKey.currentState!.save();
     if (!formKey.currentState!.validate()) {
       return;
     }
 
     if (passwordController.text != rePasswordController.text) {
+      emit(
+        AuthRegisterFailedState(
+          code: 500,
+          message: 'Password and confirmation password do not match',
+        ),
+      );
       return;
     }
-
-    emit(AuthRegisterLoadingState());
 
     final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
 
