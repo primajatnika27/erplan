@@ -37,13 +37,20 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(30, 37, 43, 1),
       appBar: AppBar(
-        title: Text("Employee"),
+        title: appBarSearch(),
         centerTitle: false,
         elevation: 2.0,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.search),
+            onPressed: () {
+              setState(() {
+                _employeeBloc.isSearchEmployee =
+                    !_employeeBloc.isSearchEmployee;
+              });
+            },
+            icon: _employeeBloc.isSearchEmployee
+                ? Icon(Icons.close)
+                : Icon(Icons.search),
           ),
         ],
       ),
@@ -53,7 +60,7 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
           listener: (context, state) {
             if (state is EmployeeFailedState) {
               Navigator.of(context).pop();
-              showFlushbar(context, state.message);
+              showFlushbar(context, state.message, isError: true);
             }
           },
           builder: (context, state) {
@@ -142,5 +149,43 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
         ),
       ),
     );
+  }
+
+  Widget appBarSearch() {
+    if (_employeeBloc.isSearchEmployee) {
+      return TextFormField(
+        style: TextStyle(
+          fontSize: 16.sp,
+          color: Colors.white,
+        ),
+        decoration: InputDecoration(
+          isDense: true,
+          contentPadding: EdgeInsets.symmetric(
+            vertical: 5.h,
+          ),
+          hintText: 'Search Employee',
+          hintStyle: TextStyle(
+            fontSize: 16.sp,
+            color: Color.fromRGBO(120, 125, 131, 1),
+          ),
+          border: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Color.fromRGBO(44, 150, 213, 1),
+            ),
+          ),
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Color.fromRGBO(44, 150, 213, 1),
+            ),
+          ),
+        ),
+        keyboardType: TextInputType.text,
+        onChanged: (value) {
+          _employeeBloc.searchEmployee(value);
+        },
+      );
+    }
+
+    return Text("Employee");
   }
 }

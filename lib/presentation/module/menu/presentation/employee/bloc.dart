@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
 
@@ -20,7 +21,8 @@ abstract class EmployeeState extends Equatable {
 class EmployeeInitialState extends EmployeeState {}
 
 class EmployeeLoadingState extends EmployeeState {
-  EmployeeLoadingState({List<EmployeeEntity>? employee}) : super(employee: employee);
+  EmployeeLoadingState({List<EmployeeEntity>? employee})
+      : super(employee: employee);
 }
 
 class EmployeeFailedState extends EmployeeState {
@@ -37,38 +39,56 @@ class EmployeeFailedState extends EmployeeState {
 }
 
 class EmployeeSuccessState extends EmployeeState {
-  EmployeeSuccessState({List<EmployeeEntity>? employee}) : super(employee: employee);
+  EmployeeSuccessState({List<EmployeeEntity>? employee})
+      : super(employee: employee);
 }
 
 class EmployeeBloc extends Cubit<EmployeeState> {
-
   final EmployeeRepository repository;
 
   final Logger logger = Logger('EmployeeBloc');
 
+  bool isSearchEmployee = false;
+  List<EmployeeEntity>? listEmployee;
+  List<EmployeeEntity>? listSearchEmployee;
+
   EmployeeBloc({required this.repository}) : super(EmployeeInitialState());
 
   Future<void> getAllEmployee() async {
-
     emit(EmployeeLoadingState(employee: state.employee));
 
     logger.fine('Get All Employee');
 
-    Either<Failure, List<EmployeeEntity>> result = await repository.getListEmployee();
+    Either<Failure, List<EmployeeEntity>> result =
+        await repository.getListEmployee();
 
     EmployeeState stateResult = result.fold(
-          (failure) {
+      (failure) {
         logger.warning('Failed data -> $failure');
         RequestFailure f = failure as RequestFailure;
         return EmployeeFailedState(code: f.code, message: f.message);
       },
-          (s) {
+      (s) {
         logger.fine('Success data -> $s');
-        List<EmployeeEntity> _data = s;
-        return EmployeeSuccessState(employee: _data);
+        listEmployee = s;
+        return EmployeeSuccessState(employee: s);
       },
     );
 
     emit(stateResult);
+  }
+
+  Future<void> searchEmployee(String key) async {
+    if (key.isNotEmpty) {
+      print(key);
+      listSearchEmployee = listEmployee
+          ?.where((e) => e.fullName.toLowerCase().contains(key.toLowerCase()))
+          .toList();
+      print('length ${listSearchEmployee!.length}');
+      emit(EmployeeSuccessState(employee: listSearchEmployee));
+    } else {
+      listSearchEmployee = listEmployee;
+      emit(EmployeeSuccessState(employee: listSearchEmployee));
+    }
   }
 }
