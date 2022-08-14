@@ -5,8 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
 
 import '../../../../../core/failure.dart';
+import '../../../../../data/model/leave/approval_leave.dart';
+import '../../../../../domain/entity/employee/employee_entity.dart';
+import '../../../../../domain/entity/leave/leave_entity.dart';
 import '../../../../../domain/entity/leave/leave_type_entity.dart';
 import '../../../../../domain/repository/leave_repository.dart';
+import '../../../../core/app.dart';
 
 abstract class LeaveState extends Equatable {
   @override
@@ -44,18 +48,48 @@ class LeaveTypeSuccessState extends LeaveState {
   List<Object?> get props => [entity];
 }
 
+class LeaveSaveSuccessState extends LeaveState {
+  LeaveSaveSuccessState() : super();
+}
+
 class LeaveBloc extends Cubit<LeaveState> {
   final LeaveRepository repository;
 
   final Logger logger = Logger('EmployeeBloc');
 
+  ApprovalLeave? approvalLeave;
+  EmployeeEntity? approvalHrHeadEntity,
+      approvalHrCheckerEntity,
+      approvalSpvEntity,
+      approvalDirectionEntity,
+      replaceEmployeeEntity;
+
   final TextEditingController leaveTypeController = TextEditingController();
+  LeaveTypeEntity? leaveTypeEntity;
+
+  final TextEditingController approvalHrHeadController =
+      TextEditingController();
+
+  final TextEditingController approvalHrCheckerController =
+      TextEditingController();
+
+  final TextEditingController approvalSpvController = TextEditingController();
+
+  final TextEditingController approvalDirectionController =
+      TextEditingController();
+
+  final TextEditingController replaceEmployeeController =
+      TextEditingController();
+
+  final TextEditingController leaveFromController = TextEditingController();
+  final TextEditingController leaveToController = TextEditingController();
+  final TextEditingController returnDateController = TextEditingController();
+
+  final TextEditingController reasonController = TextEditingController();
 
   LeaveBloc({required this.repository}) : super(LeaveInitialState());
 
   Future<void> getLeaveType() async {
-    emit(LeaveTypeLoadingState());
-
     logger.fine('Get Leave Type');
 
     Either<Failure, List<LeaveTypeEntity>> result =
@@ -71,6 +105,48 @@ class LeaveBloc extends Cubit<LeaveState> {
         logger.fine('Success data -> $s');
         List<LeaveTypeEntity> _data = s;
         return LeaveTypeSuccessState(entity: _data);
+      },
+    );
+
+    emit(stateResult);
+  }
+
+  Future<void> saveLeave() async {
+    emit(LeaveTypeLoadingState());
+
+    logger.fine('Save Leave');
+    LeaveEntity? entity;
+    try {
+      entity = LeaveEntity(
+        idEmployee: App.main.idUser,
+        idReplaceEmployee: replaceEmployeeEntity!.userId,
+        idApproval1: approvalSpvEntity!.userId,
+        idApproval2: approvalSpvEntity!.userId,
+        idApprovalHrd1: approvalHrCheckerEntity!.userId,
+        idApprovalHrd2: approvalHrHeadEntity!.userId,
+        idApprovalDirection: approvalDirectionEntity!.userId,
+        leaveFrom: leaveFromController.text,
+        leaveTo: leaveToController.text,
+        returnWork: returnDateController.text,
+        leaveReason: reasonController.text,
+        leaveTypeEntity: leaveTypeEntity!,
+      );
+    } catch (e) {
+      emit(
+        LeaveFailedState(code: 500, message: 'Please input mandatory field'),
+      );
+    }
+
+    Either<Failure, void> result = await repository.saveLeave(entity!);
+
+    LeaveState stateResult = result.fold(
+      (failure) {
+        logger.warning('Failed data -> $failure');
+        RequestFailure f = failure as RequestFailure;
+        return LeaveFailedState(code: f.code, message: f.message);
+      },
+      (s) {
+        return LeaveSaveSuccessState();
       },
     );
 

@@ -40,6 +40,8 @@ class AuthRepositoryImpl implements AuthRepository {
       if (response.statusCode == 200) {
         return Right([
           response.data['data']['token'],
+          response.data['data']['id'],
+          response.data['data']['full_name'],
         ]);
       } else {
         return Left(
@@ -82,10 +84,16 @@ class AuthRepositoryImpl implements AuthRepository {
           'email': email,
           'password': password,
           'ip_address': deviceEntity.ipAddress,
-          'is_logged': true, /// -> Temp HC
+          'is_logged': true,
+
+          /// -> Temp HC
           'mac_address': deviceEntity.macAddress,
-          'organization_code': 'TC', /// -> Temp HC
-          'status': 'active', /// -> Temp HC
+          'organization_code': 'TC',
+
+          /// -> Temp HC
+          'status': 'active',
+
+          /// -> Temp HC
         },
       );
       logger.fine('Success response => ${response.data}');
@@ -98,7 +106,7 @@ class AuthRepositoryImpl implements AuthRepository {
           RequestFailure(
             code: response.statusCode ?? 500,
             message: (response.data['message'] ??
-                'Something wrong, please try again.')
+                    'Something wrong, please try again.')
                 .toString()
                 .replaceFirst('[', '')
                 .replaceAll(']', ''),

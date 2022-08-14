@@ -8,6 +8,8 @@ class App {
   late Dio client;
   late Dio clientAuth;
   late String accessToken;
+  late String idUser;
+  late String username;
 
   static App get main => Modular.get<App>();
 

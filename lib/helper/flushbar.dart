@@ -7,7 +7,7 @@ import '../config/style_config.dart';
 Flushbar showFlushbar(BuildContext context, String message,
     {bool isTopPosition = false,
     dynamic thenEvent,
-    bool isError = true,
+    bool isError = false,
     bool forTradeValidation = false}) {
   return Flushbar(
     // message: message,
@@ -17,7 +17,7 @@ Flushbar showFlushbar(BuildContext context, String message,
     ),
     titleSize: 16,
     messageSize: 14,
-    backgroundColor: forTradeValidation
+    backgroundColor: isError
         ? AppColor.ERROR
         : Theme.of(context).dialogBackgroundColor.withOpacity(0.8),
     flushbarPosition:

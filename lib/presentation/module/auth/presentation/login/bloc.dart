@@ -1,4 +1,3 @@
-
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
@@ -7,6 +6,7 @@ import 'package:logging/logging.dart';
 
 import '../../../../../core/failure.dart';
 import '../../../../../domain/repository/auth_repository.dart';
+import '../../../../core/app.dart';
 
 abstract class AuthLoginState extends Equatable {
   @override
@@ -88,6 +88,8 @@ class AuthLoginBloc extends Cubit<AuthLoginState> {
       },
       (s) {
         logger.fine('Success data -> $s');
+        App.main.idUser = s[1];
+        App.main.username = s[2];
         return AuthLoginGoState(
           accessToken: s[0],
         );

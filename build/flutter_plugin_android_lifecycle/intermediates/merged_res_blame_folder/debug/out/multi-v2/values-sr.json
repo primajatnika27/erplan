@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/mbpro/Documents/Protechbyte Development/ERPLAN-M/build/flutter_plugin_android_lifecycle/intermediates/incremental/mergeDebugResources/merged.dir/values-sr/values-sr.xml",
+            "outputFile": "D:\\Protechbyte\\erplan\\build\\flutter_plugin_android_lifecycle\\intermediates\\res\\merged\\debug\\values-sr\\values-sr.xml",
             "map": [
                 {
-                    "source": "/Users/mbpro/.gradle/caches/transforms-2/files-2.1/8b1de47239f83b4ae53af2852d74d4bc/core-1.6.0/res/values-sr/values-sr.xml",
+                    "source": "C:\\Users\\prima\\.gradle\\caches\\transforms-2\\files-2.1\\8b1de47239f83b4ae53af2852d74d4bc\\core-1.6.0\\res\\values-sr\\values-sr.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,10 @@
             ]
         },
         {
-            "outputFile": "/Users/mbpro/Documents/Protechbyte Development/ERPLAN-M/build/flutter_plugin_android_lifecycle/intermediates/res/merged/debug/values-sr/values-sr.xml",
+            "outputFile": "D:\\Protechbyte\\erplan\\build\\flutter_plugin_android_lifecycle\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sr\\values-sr.xml",
             "map": [
                 {
-                    "source": "/Users/mbpro/.gradle/caches/transforms-2/files-2.1/8b1de47239f83b4ae53af2852d74d4bc/core-1.6.0/res/values-sr/values-sr.xml",
+                    "source": "C:\\Users\\prima\\.gradle\\caches\\transforms-2\\files-2.1\\8b1de47239f83b4ae53af2852d74d4bc\\core-1.6.0\\res\\values-sr\\values-sr.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

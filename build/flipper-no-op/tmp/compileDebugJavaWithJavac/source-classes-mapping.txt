@@ -11,12 +11,12 @@ com/facebook/flipper/plugins/sharedpreferences/SharedPreferencesFlipperPlugin.ja
  com.facebook.flipper.plugins.sharedpreferences.SharedPreferencesFlipperPlugin
 com/facebook/flipper/core/FlipperResponder.java
  com.facebook.flipper.core.FlipperResponder
+com/facebook/flipper/core/FlipperClient.java
+ com.facebook.flipper.core.FlipperClient
 com/facebook/flipper/core/StateSummary.java
  com.facebook.flipper.core.StateSummary
  com.facebook.flipper.core.StateSummary$State
  com.facebook.flipper.core.StateSummary$StateElement
-com/facebook/flipper/core/FlipperClient.java
- com.facebook.flipper.core.FlipperClient
 com/facebook/flipper/core/FlipperObject.java
  com.facebook.flipper.core.FlipperObject
  com.facebook.flipper.core.FlipperObject$Builder

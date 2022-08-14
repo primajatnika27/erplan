@@ -1,18 +1,18 @@
 [
     {
-        "merged": "/Users/mbpro/Documents/Protechbyte Development/ERPLAN-M/build/video_player_android/intermediates/res/merged/debug/layout-v21/notification_template_icon_group.xml",
-        "source": "/Users/mbpro/.gradle/caches/transforms-2/files-2.1/8b1de47239f83b4ae53af2852d74d4bc/core-1.6.0/res/layout-v21/notification_template_icon_group.xml"
+        "merged": "D:\\Protechbyte\\erplan\\build\\video_player_android\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\prima\\.gradle\\caches\\transforms-2\\files-2.1\\8b1de47239f83b4ae53af2852d74d4bc\\core-1.6.0\\res\\layout-v21\\notification_template_icon_group.xml"
     },
     {
-        "merged": "/Users/mbpro/Documents/Protechbyte Development/ERPLAN-M/build/video_player_android/intermediates/res/merged/debug/layout-v21/notification_template_custom_big.xml",
-        "source": "/Users/mbpro/.gradle/caches/transforms-2/files-2.1/8b1de47239f83b4ae53af2852d74d4bc/core-1.6.0/res/layout-v21/notification_template_custom_big.xml"
+        "merged": "D:\\Protechbyte\\erplan\\build\\video_player_android\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\prima\\.gradle\\caches\\transforms-2\\files-2.1\\8b1de47239f83b4ae53af2852d74d4bc\\core-1.6.0\\res\\layout-v21\\notification_action_tombstone.xml"
     },
     {
-        "merged": "/Users/mbpro/Documents/Protechbyte Development/ERPLAN-M/build/video_player_android/intermediates/res/merged/debug/layout-v21/notification_action_tombstone.xml",
-        "source": "/Users/mbpro/.gradle/caches/transforms-2/files-2.1/8b1de47239f83b4ae53af2852d74d4bc/core-1.6.0/res/layout-v21/notification_action_tombstone.xml"
+        "merged": "D:\\Protechbyte\\erplan\\build\\video_player_android\\intermediates\\res\\merged\\debug\\layout-v21\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\prima\\.gradle\\caches\\transforms-2\\files-2.1\\8b1de47239f83b4ae53af2852d74d4bc\\core-1.6.0\\res\\layout-v21\\notification_template_custom_big.xml"
     },
     {
-        "merged": "/Users/mbpro/Documents/Protechbyte Development/ERPLAN-M/build/video_player_android/intermediates/res/merged/debug/layout-v21/notification_action.xml",
-        "source": "/Users/mbpro/.gradle/caches/transforms-2/files-2.1/8b1de47239f83b4ae53af2852d74d4bc/core-1.6.0/res/layout-v21/notification_action.xml"
+        "merged": "D:\\Protechbyte\\erplan\\build\\video_player_android\\intermediates\\res\\merged\\debug\\layout-v21\\notification_action.xml",
+        "source": "C:\\Users\\prima\\.gradle\\caches\\transforms-2\\files-2.1\\8b1de47239f83b4ae53af2852d74d4bc\\core-1.6.0\\res\\layout-v21\\notification_action.xml"
     }
 ]
