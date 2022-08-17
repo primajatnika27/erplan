@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../data/repository_impl/employee_repository_impl.dart';
@@ -82,7 +83,9 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
                                 Container(
                                   height: 35.h,
                                   width: 35.h,
-                                  child: AvatarWidget(imageUrl: ''),
+                                  child: AvatarWidget(
+                                      imageUrl:
+                                          'https://pbs.twimg.com/media/EigE7IkUMAEEiUR.jpg'),
                                 ),
                                 Expanded(
                                   child: Padding(
@@ -147,6 +150,16 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
             );
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton.small(
+        onPressed: () {
+          Modular.to.pushNamed('/home/create/employee');
+        },
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+        backgroundColor: Colors.pink,
       ),
     );
   }

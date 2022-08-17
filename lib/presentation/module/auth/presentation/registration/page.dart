@@ -4,9 +4,13 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../data/repository_impl/auth_repository_impl.dart';
+import '../../../../../data/repository_impl/department_repository_impl.dart';
+import '../../../../../domain/entity/department/department_entity.dart';
 import '../../../../../helper/flushbar.dart';
+import '../../../../bloc/department_bloc.dart';
 import '../../../../core/app.dart';
 import '../../../../widget/block_loader.dart';
+import '../../../menu/presentation/employee/bloc.dart';
 import 'bloc.dart';
 
 class AuthRegistrationPage extends StatefulWidget {
@@ -18,6 +22,7 @@ class AuthRegistrationPage extends StatefulWidget {
 
 class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
   late AuthRegisterBloc _authRegisterBloc;
+  late DepartmentBloc _departmentBloc;
 
   late bool isObscurePassword;
   late bool isObscureRePassword;
@@ -31,6 +36,13 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
       ),
     );
 
+    _departmentBloc = DepartmentBloc(
+      repository: DepartmentRepositoryImpl(
+        client: App.main.clientAuth,
+        fcmToken: App.main.firebaseToken,
+      ),
+    );
+
     isObscurePassword = true;
     isObscureRePassword = true;
     super.initState();
@@ -38,30 +50,112 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => _authRegisterBloc,
-      child: BlocListener<AuthRegisterBloc, AuthRegisterState>(
-        listener: (context, state) async {
-          if (state is AuthRegisterLoadingState) {
-            FocusScope.of(context).requestFocus(FocusNode());
-            showDialog(
-              context: context,
-              builder: (_) => BlockLoader(),
-            );
-          } else if (state is AuthRegisterFailedState) {
-            Navigator.of(context).pop();
-            showFlushbar(context, state.message, isError: true);
-          } else if (state is AuthRegisterGoState) {
-            try {
-              await Future.delayed(Duration(seconds: 1));
-              Modular.to.navigate('/auth/login');
-            } catch (e) {
-              Navigator.of(context).pop();
-            }
-          }
-        },
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => _authRegisterBloc,
+        ),
+        BlocProvider(
+          create: (context) => _departmentBloc,
+        ),
+      ],
+      child: MultiBlocListener(
+        listeners: [
+          BlocListener<AuthRegisterBloc, AuthRegisterState>(
+            bloc: _authRegisterBloc,
+            listener: (context, state) async {
+              if (state is AuthRegisterLoadingState) {
+                FocusScope.of(context).requestFocus(FocusNode());
+                showDialog(
+                  context: context,
+                  builder: (_) => BlockLoader(),
+                );
+              } else if (state is AuthRegisterFailedState) {
+                Navigator.of(context).pop();
+                showFlushbar(context, state.message, isError: true);
+              } else if (state is AuthRegisterGoState) {
+                try {
+                  await Future.delayed(Duration(seconds: 1));
+                  Modular.to.navigate('/auth/login');
+                } catch (e) {
+                  Navigator.of(context).pop();
+                }
+              }
+            },
+          ),
+          BlocListener<DepartmentBloc, DepartmentState>(
+            bloc: _departmentBloc,
+            listener: (context, state) {
+              if (state is DepartmentLoadingState) {
+                FocusScope.of(context).requestFocus(FocusNode());
+                showDialog(
+                  context: context,
+                  builder: (_) => BlockLoader(),
+                );
+              }
+
+              if (state is DepartmentSuccessState) {
+                Navigator.of(context).pop();
+                showModalBottomSheet(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10.0),
+                      topRight: Radius.circular(10.0),
+                    ),
+                  ),
+                  backgroundColor: Color.fromRGBO(30, 37, 43, 1),
+                  context: context,
+                  builder: (context) {
+                    return Container(
+                      height: 300.w,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10.w, vertical: 10.w),
+                            child: Container(
+                              width: 100.w,
+                              height: 3.w,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20.w),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: ListView.builder(
+                              itemBuilder: (context, index) {
+                                return RadioListTile<DepartmentEntity>(
+                                  value: state.entity![index],
+                                  groupValue:
+                                      _authRegisterBloc.departmentEntity,
+                                  onChanged: (value) {
+                                    _authRegisterBloc.departmentController
+                                        .text = value!.departmentName;
+                                    _authRegisterBloc.departmentEntity = value;
+                                    Navigator.pop(context);
+                                  },
+                                  title: Text(
+                                      "${state.entity?[index].departmentName}"),
+                                );
+                              },
+                              itemCount: state.entity?.length,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              }
+            },
+          )
+        ],
         child: Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            backgroundColor: Color.fromRGBO(30, 37, 43, 1),
+          ),
+          backgroundColor: Color.fromRGBO(30, 37, 43, 1),
           body: Form(
             key: _authRegisterBloc.formKey,
             child: CustomScrollView(
@@ -69,11 +163,84 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
                 SliverList(
                   delegate: SliverChildListDelegate(
                     [
-                      SizedBox(height: 150.h),
+                      SizedBox(height: 115.h),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 34.w),
                         child: Column(
                           children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(right: 20.w),
+                                    child: Text(
+                                      "Department",
+                                      style: TextStyle(
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: TextFormField(
+                                    controller:
+                                        _authRegisterBloc.departmentController,
+                                    readOnly: true,
+                                    onTap: () {
+                                      _departmentBloc.getDepartment();
+                                    },
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color: Colors.white,
+                                    ),
+                                    decoration: InputDecoration(
+                                      hintText: 'Select Department',
+                                      suffixIcon: Icon(
+                                        Icons.chevron_right_outlined,
+                                        size: 22.h,
+                                      ),
+                                      labelStyle: TextStyle(
+                                        color: Colors.white60,
+                                      ),
+                                      isDense: true,
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical: 5.h,
+                                      ),
+                                      hintStyle: TextStyle(
+                                        fontSize: 14.sp,
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      border: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white54,
+                                        ),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white54,
+                                        ),
+                                      ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white54,
+                                        ),
+                                      ),
+                                      suffixIconConstraints: BoxConstraints(
+                                          minWidth: 14.w, minHeight: 16.h),
+                                    ),
+                                    validator: (value) {
+                                      if (value!.trim().isEmpty) {
+                                        return 'department is required.';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 35.h),
                             Row(
                               children: [
                                 Expanded(
@@ -104,7 +271,7 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
                                       ),
                                       hintText: 'Input username',
                                       hintStyle: TextStyle(
-                                        fontSize: 16.sp,
+                                        fontSize: 14.sp,
                                         color: Color.fromRGBO(120, 125, 131, 1),
                                       ),
                                       border: UnderlineInputBorder(
@@ -162,7 +329,7 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
                                       ),
                                       hintText: 'Input email',
                                       hintStyle: TextStyle(
-                                        fontSize: 16.sp,
+                                        fontSize: 14.sp,
                                         color: Color.fromRGBO(120, 125, 131, 1),
                                       ),
                                       border: UnderlineInputBorder(
@@ -221,7 +388,7 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
                                       ),
                                       hintText: 'Input password',
                                       hintStyle: TextStyle(
-                                        fontSize: 16.sp,
+                                        fontSize: 14.sp,
                                         color: Color.fromRGBO(120, 125, 131, 1),
                                       ),
                                       prefixIconConstraints: BoxConstraints(
@@ -296,7 +463,7 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
                                   child: TextFormField(
                                     controller:
                                         _authRegisterBloc.rePasswordController,
-                                    obscureText: isObscurePassword,
+                                    obscureText: isObscureRePassword,
                                     style: TextStyle(
                                       fontSize: 16.sp,
                                       color: Colors.white,
@@ -308,7 +475,7 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
                                       ),
                                       hintText: 'Retype password',
                                       hintStyle: TextStyle(
-                                        fontSize: 16.sp,
+                                        fontSize: 14.sp,
                                         color: Color.fromRGBO(120, 125, 131, 1),
                                       ),
                                       prefixIconConstraints: BoxConstraints(

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
-import '../../../../../data/model/leave/approval_leave.dart';
+import '../../../../../data/model/leave/approval_leave_enum.dart';
 import '../../../../../data/repository_impl/employee_repository_impl.dart';
 import '../../../../../data/repository_impl/leave_repository_impl.dart';
 import '../../../../../domain/entity/employee/employee_entity.dart';
@@ -156,6 +156,7 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
 
                 if (state is LeaveSaveSuccessState) {
                   Navigator.of(context).pop();
+                  Navigator.of(context).pop();
                   showFlushbar(context, 'Success Create Leave');
                 }
               },
@@ -194,7 +195,22 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
                               child: ListView.builder(
                                 itemBuilder: (context, index) {
                                   switch (_leaveBloc.approvalLeave) {
-                                    case ApprovalLeave.HRChecker:
+                                    case ApprovalLeaveEnum.EmployeeSelected:
+                                      return RadioListTile<EmployeeEntity>(
+                                        value: state.employee![index],
+                                        groupValue:
+                                            _leaveBloc.employeeSelectEntity,
+                                        onChanged: (value) {
+                                          _leaveBloc.employeeController.text =
+                                              value!.fullName;
+                                          _leaveBloc.employeeSelectEntity =
+                                              value;
+                                          Navigator.pop(context);
+                                        },
+                                        title: Text(
+                                            "${state.employee?[index].fullName}"),
+                                      );
+                                    case ApprovalLeaveEnum.HRChecker:
                                       return RadioListTile<EmployeeEntity>(
                                         value: state.employee![index],
                                         groupValue:
@@ -209,7 +225,7 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
                                         title: Text(
                                             "${state.employee?[index].fullName}"),
                                       );
-                                    case ApprovalLeave.HRHead:
+                                    case ApprovalLeaveEnum.HRHead:
                                       return RadioListTile<EmployeeEntity>(
                                         value: state.employee![index],
                                         groupValue:
@@ -224,7 +240,7 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
                                         title: Text(
                                             "${state.employee?[index].fullName}"),
                                       );
-                                    case ApprovalLeave.Direction:
+                                    case ApprovalLeaveEnum.Direction:
                                       return RadioListTile<EmployeeEntity>(
                                         value: state.employee![index],
                                         groupValue:
@@ -239,7 +255,7 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
                                         title: Text(
                                             "${state.employee?[index].fullName}"),
                                       );
-                                    case ApprovalLeave.SPV:
+                                    case ApprovalLeaveEnum.SPV:
                                       return RadioListTile<EmployeeEntity>(
                                         value: state.employee![index],
                                         groupValue:
@@ -254,7 +270,7 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
                                         title: Text(
                                             "${state.employee?[index].fullName}"),
                                       );
-                                    case ApprovalLeave.Replace:
+                                    case ApprovalLeaveEnum.Replace:
                                       return RadioListTile<EmployeeEntity>(
                                         value: state.employee![index],
                                         groupValue:
@@ -356,10 +372,74 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 15.w),
                       child: TextFormField(
+                        controller: _leaveBloc.employeeController,
+                        readOnly: true,
+                        onTap: () {
+                          _leaveBloc.approvalLeave =
+                              ApprovalLeaveEnum.EmployeeSelected;
+                          _employeeBloc.getAllEmployee();
+                        },
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          color: Colors.white,
+                        ),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.perm_contact_cal_outlined,
+                            size: 22.h,
+                          ),
+                          suffixIcon: Icon(
+                            Icons.chevron_right_outlined,
+                            size: 22.h,
+                          ),
+                          label: Text("Employee"),
+                          labelStyle: TextStyle(
+                            color: Colors.white60,
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(
+                            vertical: 5.h,
+                          ),
+                          hintText: 'Please select employee',
+                          hintStyle: TextStyle(
+                            fontSize: 14.sp,
+                            color: Color.fromRGBO(120, 125, 131, 1),
+                          ),
+                          border: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.white54,
+                            ),
+                          ),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value!.trim().isEmpty) {
+                            return '*required';
+                          }
+                          return null;
+                        },
+                      ),
+                    ),
+                    SizedBox(height: 20.h),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15.w),
+                      child: TextFormField(
                         controller: _leaveBloc.approvalHrCheckerController,
                         readOnly: true,
                         onTap: () {
-                          _leaveBloc.approvalLeave = ApprovalLeave.HRChecker;
+                          _leaveBloc.approvalLeave =
+                              ApprovalLeaveEnum.HRChecker;
                           _employeeBloc.getAllEmployee();
                         },
                         style: TextStyle(
@@ -421,7 +501,7 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
                         controller: _leaveBloc.approvalHrHeadController,
                         readOnly: true,
                         onTap: () {
-                          _leaveBloc.approvalLeave = ApprovalLeave.HRHead;
+                          _leaveBloc.approvalLeave = ApprovalLeaveEnum.HRHead;
                           _employeeBloc.getAllEmployee();
                         },
                         style: TextStyle(
@@ -483,7 +563,7 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
                         controller: _leaveBloc.approvalSpvController,
                         readOnly: true,
                         onTap: () {
-                          _leaveBloc.approvalLeave = ApprovalLeave.SPV;
+                          _leaveBloc.approvalLeave = ApprovalLeaveEnum.SPV;
                           _employeeBloc.getAllEmployee();
                         },
                         style: TextStyle(
@@ -545,7 +625,8 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
                         controller: _leaveBloc.approvalDirectionController,
                         readOnly: true,
                         onTap: () {
-                          _leaveBloc.approvalLeave = ApprovalLeave.Direction;
+                          _leaveBloc.approvalLeave =
+                              ApprovalLeaveEnum.Direction;
                           _employeeBloc.getAllEmployee();
                         },
                         style: TextStyle(
@@ -768,7 +849,7 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
                         controller: _leaveBloc.replaceEmployeeController,
                         readOnly: true,
                         onTap: () {
-                          _leaveBloc.approvalLeave = ApprovalLeave.Replace;
+                          _leaveBloc.approvalLeave = ApprovalLeaveEnum.Replace;
                           _employeeBloc.getAllEmployee();
                         },
                         style: TextStyle(
@@ -944,6 +1025,7 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
                         },
                       ),
                     ),
+                    SizedBox(height: 20.h),
                   ]),
                 ),
               ],

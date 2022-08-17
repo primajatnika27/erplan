@@ -9,6 +9,7 @@ import 'package:logging/logging.dart';
 
 import '../../../../../core/failure.dart';
 import '../../../../../domain/entity/auth/device_entity.dart';
+import '../../../../../domain/entity/department/department_entity.dart';
 import '../../../../../domain/repository/auth_repository.dart';
 import '../../../../../helper/string_helper.dart';
 
@@ -65,6 +66,9 @@ class AuthRegisterBloc extends Cubit<AuthRegisterState> {
   final TextEditingController rePasswordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
 
+  final TextEditingController departmentController = TextEditingController();
+  DepartmentEntity? departmentEntity;
+
   final AuthRepository repository;
 
   final Logger logger = Logger('AuthRegisterBloc');
@@ -73,18 +77,29 @@ class AuthRegisterBloc extends Cubit<AuthRegisterState> {
       : super(AuthRegisterInitialState());
 
   Future<void> register() async {
-    emit(AuthRegisterLoadingState());
-
     formKey.currentState!.save();
     if (!formKey.currentState!.validate()) {
       return;
     }
+
+    emit(AuthRegisterLoadingState());
 
     if (passwordController.text != rePasswordController.text) {
       emit(
         AuthRegisterFailedState(
           code: 500,
           message: 'Password and confirmation password do not match',
+        ),
+      );
+      return;
+    }
+
+    if (passwordController.text.length <= 6 &&
+        rePasswordController.text.length <= 6) {
+      emit(
+        AuthRegisterFailedState(
+          code: 500,
+          message: 'Min password length 6',
         ),
       );
       return;
@@ -117,6 +132,7 @@ class AuthRegisterBloc extends Cubit<AuthRegisterState> {
         macAddress: _macAddress,
         ipAddress: _ipAddress,
       ),
+      organizationCode: departmentEntity!.departmentCode,
     );
 
     AuthRegisterState stateResult = result.fold(

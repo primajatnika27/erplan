@@ -22,14 +22,12 @@ class EmployeeRepositoryImpl extends EmployeeRepository {
 
   @override
   Future<Either<Failure, List<EmployeeEntity>>> getListEmployee() async {
-
     logger.fine('Do login => Token : ${accessToken}');
     try {
       Response response = await client.get(
         '/employee/list',
-        options: Options(
-          headers: {'Authorization': 'Bearer ${this.accessToken}'}
-        ),
+        options:
+            Options(headers: {'Authorization': 'Bearer ${this.accessToken}'}),
       );
       logger.fine('Success response => ${response.data}');
       if (response.statusCode == 200) {
@@ -39,7 +37,7 @@ class EmployeeRepositoryImpl extends EmployeeRepository {
           RequestFailure(
             code: response.statusCode ?? 500,
             message: (response.data['message'] ??
-                'Something wrong, please try again.')
+                    'Something wrong, please try again.')
                 .toString()
                 .replaceFirst('[', '')
                 .replaceAll(']', ''),
@@ -57,5 +55,66 @@ class EmployeeRepositoryImpl extends EmployeeRepository {
     }
   }
 
+  @override
+  Future<Either<Failure, List<dynamic>>> createEmployee(
+      EmployeeEntity entity) async {
+    logger.fine('Do create => Token : ${accessToken}');
+    try {
+      Response response = await client.post(
+        '/employee/',
+        data: {
+          'user_id': entity.userId,
+          'address_city': entity.addressCity,
+          'address_full': entity.addressFull,
+          'bank_account_no': entity.bankAccountNo,
+          'bank_name': entity.bankName,
+          'blood_group': entity.bloodGroup,
+          'born_city': entity.bornCity,
+          'born_date': entity.bornDate,
+          'citizen': entity.citizen,
+          'education': entity.education,
+          'emergency_no': entity.emergencyNo,
+          'family_card_no': entity.familyCardNo,
+          'full_name': entity.fullName,
+          'gender': entity.gender,
+          'hand_phone_no': entity.handPhoneNo,
+          'identity_no': entity.identityNo,
+          'marital_date': entity.maritalDate,
+          'marital_status': entity.maritalStatus,
+          'passport_no': entity.passportNo,
+          'phone_no': entity.phoneNo,
+          'postal_code': entity.postalCode,
+          'province': entity.province,
+          'religion': entity.religion,
+          'salary_system': entity.salarySystem,
+        },
+        options:
+            Options(headers: {'Authorization': 'Bearer ${this.accessToken}'}),
+      );
 
+      logger.fine('Success response => ${response.data}');
+      if (response.statusCode == 201) {
+        return Right(EmployeeModel.parseEntries(response.data['data']));
+      } else {
+        return Left(
+          RequestFailure(
+            code: response.statusCode ?? 500,
+            message: (response.data['message'] ??
+                    'Something wrong, please try again.')
+                .toString()
+                .replaceFirst('[', '')
+                .replaceAll(']', ''),
+          ),
+        );
+      }
+    } catch (e) {
+      logger.warning('Error -> $e');
+      return Left(
+        RequestFailure(
+          code: 500,
+          message: 'Something wrong, please try again.',
+        ),
+      );
+    }
+  }
 }

@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../../../data/repository_impl/employee_repository_impl.dart';
 import '../../../../../../../helper/flushbar.dart';
+import '../../../../../../core/app.dart';
 import '../../../../../../widget/block_loader.dart';
 import '../../bloc.dart';
 
@@ -16,6 +18,19 @@ class CreateEmployeePage extends StatefulWidget {
 
 class _CreateEmployeePageState extends State<CreateEmployeePage> {
   late EmployeeBloc _employeeBloc;
+
+  @override
+  void initState() {
+    _employeeBloc = EmployeeBloc(
+      repository: EmployeeRepositoryImpl(
+        client: App.main.clientAuth,
+        accessToken: App.main.accessToken,
+        fcmToken: App.main.firebaseToken,
+      ),
+    );
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,14 +50,18 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
           } else if (state is EmployeeRegisterGoState) {
             try {
               await Future.delayed(Duration(seconds: 1));
-              Modular.to.navigate('/auth/login');
+              Modular.to.pop();
             } catch (e) {
               Navigator.of(context).pop();
             }
           }
         },
         child: Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            title: Text('Create Employee'),
+            backgroundColor: Color.fromRGBO(30, 37, 43, 1),
+          ),
+          backgroundColor: Color.fromRGBO(30, 37, 43, 1),
           body: Form(
             key: _employeeBloc.formKey,
             child: CustomScrollView(
@@ -50,7 +69,7 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                 SliverList(
                   delegate: SliverChildListDelegate(
                     [
-                      SizedBox(height: 150.h),
+                      SizedBox(height: 20.h),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 34.w),
                         child: Column(
@@ -85,7 +104,7 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                                       ),
                                       hintText: 'Input Identity No',
                                       hintStyle: TextStyle(
-                                        fontSize: 16.sp,
+                                        fontSize: 14.sp,
                                         color: Color.fromRGBO(120, 125, 131, 1),
                                       ),
                                       border: UnderlineInputBorder(
@@ -101,11 +120,15 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                                         ),
                                       ),
                                     ),
-                                    keyboardType: TextInputType.emailAddress,
+                                    keyboardType: TextInputType.number,
                                     validator: (value) {
                                       if (value!.trim().isEmpty) {
                                         return 'identity no is required.';
                                       }
+
+                                      if (value.length <= 16) {
+                                        return 'identity no required 16 number.';
+                                      }
                                       return null;
                                     },
                                   ),
@@ -119,7 +142,7 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                                   child: Padding(
                                     padding: EdgeInsets.only(right: 20.w),
                                     child: Text(
-                                      "Phone No.",
+                                      "Fullname",
                                       style: TextStyle(
                                         color: Color.fromRGBO(120, 125, 131, 1),
                                       ),
@@ -131,7 +154,7 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                                   flex: 2,
                                   child: TextFormField(
                                     controller:
-                                        _employeeBloc.phoneNumberController,
+                                        _employeeBloc.fullnameController,
                                     style: TextStyle(
                                       fontSize: 16.sp,
                                       color: Colors.white,
@@ -141,9 +164,9 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                                       contentPadding: EdgeInsets.symmetric(
                                         vertical: 5.h,
                                       ),
-                                      hintText: 'Input Phone Number',
+                                      hintText: 'Input your name',
                                       hintStyle: TextStyle(
-                                        fontSize: 16.sp,
+                                        fontSize: 14.sp,
                                         color: Color.fromRGBO(120, 125, 131, 1),
                                       ),
                                       border: UnderlineInputBorder(
@@ -159,10 +182,10 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                                         ),
                                       ),
                                     ),
-                                    keyboardType: TextInputType.number,
+                                    keyboardType: TextInputType.name,
                                     validator: (value) {
                                       if (value!.trim().isEmpty) {
-                                        return 'phone number is required.';
+                                        return 'fullname is required.';
                                       }
                                       return null;
                                     },
@@ -201,7 +224,7 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                                       ),
                                       hintText: 'Input Phone Number',
                                       hintStyle: TextStyle(
-                                        fontSize: 16.sp,
+                                        fontSize: 14.sp,
                                         color: Color.fromRGBO(120, 125, 131, 1),
                                       ),
                                       border: UnderlineInputBorder(
@@ -221,6 +244,361 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                                     validator: (value) {
                                       if (value!.trim().isEmpty) {
                                         return 'phone number is required.';
+                                      }
+
+                                      if (value.length <= 11) {
+                                        return 'phone is required length.';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 35.h),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(right: 20.w),
+                                    child: Text(
+                                      "Emergency No.",
+                                      style: TextStyle(
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: TextFormField(
+                                    controller:
+                                        _employeeBloc.emergencyNumberController,
+                                    style: TextStyle(
+                                      fontSize: 16.sp,
+                                      color: Colors.white,
+                                    ),
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical: 5.h,
+                                      ),
+                                      hintText: 'Input Phone Number',
+                                      hintStyle: TextStyle(
+                                        fontSize: 14.sp,
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      border: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                              Color.fromRGBO(44, 150, 213, 1),
+                                        ),
+                                      ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                              Color.fromRGBO(44, 150, 213, 1),
+                                        ),
+                                      ),
+                                    ),
+                                    keyboardType: TextInputType.number,
+                                    validator: (value) {
+                                      if (value!.trim().isEmpty) {
+                                        return 'emergency number is required.';
+                                      }
+
+                                      if (value.length <= 11) {
+                                        return 'emergency is required length.';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 35.h),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(right: 20.w),
+                                    child: Text(
+                                      "City",
+                                      style: TextStyle(
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: TextFormField(
+                                    controller: _employeeBloc.cityController,
+                                    style: TextStyle(
+                                      fontSize: 16.sp,
+                                      color: Colors.white,
+                                    ),
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical: 5.h,
+                                      ),
+                                      hintText: 'Input City',
+                                      hintStyle: TextStyle(
+                                        fontSize: 14.sp,
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      border: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                              Color.fromRGBO(44, 150, 213, 1),
+                                        ),
+                                      ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                              Color.fromRGBO(44, 150, 213, 1),
+                                        ),
+                                      ),
+                                    ),
+                                    keyboardType: TextInputType.text,
+                                    validator: (value) {
+                                      if (value!.trim().isEmpty) {
+                                        return 'city is required.';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 35.h),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(right: 20.w),
+                                    child: Text(
+                                      "Full Address",
+                                      style: TextStyle(
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: TextFormField(
+                                    controller:
+                                        _employeeBloc.fullAdressController,
+                                    style: TextStyle(
+                                      fontSize: 16.sp,
+                                      color: Colors.white,
+                                    ),
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical: 5.h,
+                                      ),
+                                      hintText: 'Input Full Address',
+                                      hintStyle: TextStyle(
+                                        fontSize: 14.sp,
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      border: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                              Color.fromRGBO(44, 150, 213, 1),
+                                        ),
+                                      ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                              Color.fromRGBO(44, 150, 213, 1),
+                                        ),
+                                      ),
+                                    ),
+                                    keyboardType: TextInputType.text,
+                                    validator: (value) {
+                                      if (value!.trim().isEmpty) {
+                                        return 'Full address is required.';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 35.h),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(right: 20.w),
+                                    child: Text(
+                                      "Province",
+                                      style: TextStyle(
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: TextFormField(
+                                    controller:
+                                        _employeeBloc.provinceController,
+                                    style: TextStyle(
+                                      fontSize: 16.sp,
+                                      color: Colors.white,
+                                    ),
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical: 5.h,
+                                      ),
+                                      hintText: 'Input Full Address',
+                                      hintStyle: TextStyle(
+                                        fontSize: 14.sp,
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      border: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                              Color.fromRGBO(44, 150, 213, 1),
+                                        ),
+                                      ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                              Color.fromRGBO(44, 150, 213, 1),
+                                        ),
+                                      ),
+                                    ),
+                                    keyboardType: TextInputType.text,
+                                    validator: (value) {
+                                      if (value!.trim().isEmpty) {
+                                        return 'Province is required.';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 35.h),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(right: 20.w),
+                                    child: Text(
+                                      "Bank Account Name",
+                                      style: TextStyle(
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: TextFormField(
+                                    controller:
+                                        _employeeBloc.bankAccountNameController,
+                                    style: TextStyle(
+                                      fontSize: 16.sp,
+                                      color: Colors.white,
+                                    ),
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical: 5.h,
+                                      ),
+                                      hintText: 'Input Bank Account Name',
+                                      hintStyle: TextStyle(
+                                        fontSize: 14.sp,
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      border: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                              Color.fromRGBO(44, 150, 213, 1),
+                                        ),
+                                      ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                              Color.fromRGBO(44, 150, 213, 1),
+                                        ),
+                                      ),
+                                    ),
+                                    keyboardType: TextInputType.text,
+                                    validator: (value) {
+                                      if (value!.trim().isEmpty) {
+                                        return 'Bank Account is required.';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 35.h),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(right: 20.w),
+                                    child: Text(
+                                      "Bank Account Number",
+                                      style: TextStyle(
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: TextFormField(
+                                    controller: _employeeBloc
+                                        .bankAccountNumberController,
+                                    style: TextStyle(
+                                      fontSize: 16.sp,
+                                      color: Colors.white,
+                                    ),
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical: 5.h,
+                                      ),
+                                      hintText: 'Input Bank Account Number',
+                                      hintStyle: TextStyle(
+                                        fontSize: 14.sp,
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      border: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                              Color.fromRGBO(44, 150, 213, 1),
+                                        ),
+                                      ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                              Color.fromRGBO(44, 150, 213, 1),
+                                        ),
+                                      ),
+                                    ),
+                                    keyboardType: TextInputType.number,
+                                    validator: (value) {
+                                      if (value!.trim().isEmpty) {
+                                        return 'Bank Account is required.';
                                       }
                                       return null;
                                     },
@@ -235,47 +613,43 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                     ],
                   ),
                 ),
-                SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: Container(
-                    alignment: Alignment.bottomCenter,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          color: Color.fromRGBO(43, 49, 56, 1),
-                          padding: EdgeInsets.symmetric(
-                            vertical: 20.h,
-                            horizontal: 16.w,
-                          ),
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              padding: MaterialStateProperty.resolveWith(
-                                (states) => EdgeInsets.symmetric(
-                                  horizontal: 6.w,
-                                  vertical: 10.w,
-                                ),
-                              ),
-                              shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.r)),
-                              ),
-                            ),
-                            onPressed: () {
-                              FocusScope.of(context).requestFocus(FocusNode());
-                            },
-                            child: Text(
-                              'Register',
-                              style: TextStyle(
-                                fontSize: 18.sp,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
+              ],
+            ),
+          ),
+          bottomNavigationBar: Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  color: Color.fromRGBO(43, 49, 56, 1),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 20.h,
+                    horizontal: 16.w,
+                  ),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.resolveWith(
+                        (states) => EdgeInsets.symmetric(
+                          horizontal: 6.w,
+                          vertical: 10.w,
                         ),
-                      ],
+                      ),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.r)),
+                      ),
+                    ),
+                    onPressed: () {
+                      FocusScope.of(context).requestFocus(FocusNode());
+                      _employeeBloc.createEmployee();
+                    },
+                    child: Text(
+                      'Register Employee',
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),

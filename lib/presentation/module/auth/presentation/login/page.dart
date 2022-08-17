@@ -81,9 +81,9 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                             Row(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(right: 20.w),
+                                  padding: EdgeInsets.only(right: 40.w),
                                   child: Text(
-                                    "Username",
+                                    "Email",
                                     style: TextStyle(
                                       color: Color.fromRGBO(120, 125, 131, 1),
                                     ),
@@ -102,7 +102,7 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                                       contentPadding: EdgeInsets.symmetric(
                                         vertical: 5.h,
                                       ),
-                                      hintText: 'Input username',
+                                      hintText: 'Input email',
                                       hintStyle: TextStyle(
                                         fontSize: 16.sp,
                                         color: Color.fromRGBO(120, 125, 131, 1),
@@ -123,7 +123,7 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                                     keyboardType: TextInputType.emailAddress,
                                     validator: (value) {
                                       if (value!.trim().isEmpty) {
-                                        return 'username is required.';
+                                        return 'email is required.';
                                       }
                                       return null;
                                     },

@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
 
 import '../../../../../core/failure.dart';
-import '../../../../../data/model/leave/approval_leave.dart';
+import '../../../../../data/model/leave/approval_leave_enum.dart';
 import '../../../../../domain/entity/employee/employee_entity.dart';
 import '../../../../../domain/entity/leave/leave_entity.dart';
 import '../../../../../domain/entity/leave/leave_type_entity.dart';
@@ -62,8 +62,9 @@ class LeaveBloc extends Cubit<LeaveState> {
   final Logger logger = Logger('EmployeeBloc');
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  ApprovalLeave? approvalLeave;
-  EmployeeEntity? approvalHrHeadEntity,
+  ApprovalLeaveEnum? approvalLeave;
+  EmployeeEntity? employeeSelectEntity,
+      approvalHrHeadEntity,
       approvalHrCheckerEntity,
       approvalSpvEntity,
       approvalDirectionEntity,
@@ -71,6 +72,8 @@ class LeaveBloc extends Cubit<LeaveState> {
 
   final TextEditingController leaveTypeController = TextEditingController();
   LeaveTypeEntity? leaveTypeEntity;
+
+  final TextEditingController employeeController = TextEditingController();
 
   final TextEditingController approvalHrHeadController =
       TextEditingController();
@@ -132,7 +135,7 @@ class LeaveBloc extends Cubit<LeaveState> {
 
     try {
       entity = LeaveEntity(
-        idEmployee: App.main.idUser,
+        idEmployee: employeeSelectEntity!.employeeId,
         idReplaceEmployee: replaceEmployeeEntity!.userId,
         idApproval1: approvalSpvEntity!.userId,
         idApproval2: approvalSpvEntity!.userId,

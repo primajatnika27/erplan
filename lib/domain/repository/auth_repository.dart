@@ -14,6 +14,7 @@ abstract class AuthRepository {
     required String password,
     required String rePassword,
     required String email,
+    required String organizationCode,
     required DeviceEntity deviceEntity,
   });
 }

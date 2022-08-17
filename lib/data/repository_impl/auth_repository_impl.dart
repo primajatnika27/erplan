@@ -72,6 +72,7 @@ class AuthRepositoryImpl implements AuthRepository {
     required String password,
     required String rePassword,
     required String email,
+    required String organizationCode,
     required DeviceEntity deviceEntity,
   }) async {
     logger.fine('Do login => FCM : ${fcmToken}');
@@ -85,15 +86,11 @@ class AuthRepositoryImpl implements AuthRepository {
           'password': password,
           'ip_address': deviceEntity.ipAddress,
           'is_logged': true,
-
-          /// -> Temp HC
           'mac_address': deviceEntity.macAddress,
-          'organization_code': 'TC',
+          'organization_code': organizationCode,
 
           /// -> Temp HC
           'status': 'active',
-
-          /// -> Temp HC
         },
       );
       logger.fine('Success response => ${response.data}');
