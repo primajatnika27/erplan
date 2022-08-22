@@ -58,23 +58,37 @@ class EmployeeBloc extends Cubit<EmployeeState> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   bool isSearchEmployee = false;
+  bool isAlreadyregisterEmployee = false;
   List<EmployeeEntity>? listEmployee;
   List<EmployeeEntity>? listSearchEmployee;
 
   TextEditingController identityNumberController = TextEditingController();
-  TextEditingController fullnameController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController homeNumberController = TextEditingController();
   TextEditingController emergencyNumberController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   TextEditingController fullAdressController = TextEditingController();
   TextEditingController provinceController = TextEditingController();
+  TextEditingController bloodGroupController = TextEditingController();
+  TextEditingController bornCityController = TextEditingController();
+  TextEditingController bornDateController = TextEditingController();
+  TextEditingController citizenController = TextEditingController();
+  TextEditingController educationController = TextEditingController();
+  TextEditingController familyCardNoController = TextEditingController();
+  TextEditingController genderController = TextEditingController();
+  TextEditingController passportNoController = TextEditingController();
+  TextEditingController postalCodeController = TextEditingController();
+  TextEditingController religionController = TextEditingController();
   TextEditingController bankAccountNameController = TextEditingController();
   TextEditingController bankAccountNumberController = TextEditingController();
+
+  bool salarySystem = false;
 
   EmployeeBloc({required this.repository}) : super(EmployeeInitialState());
 
   Future<void> createEmployee() async {
-    SharedPreferences sp = await Modular.getAsync<SharedPreferences>();
     logger.fine('Save Employee');
     EmployeeEntity? entity;
 
@@ -97,25 +111,23 @@ class EmployeeBloc extends Cubit<EmployeeState> {
         emergencyNo: emergencyNumberController.text,
         handPhoneNo: phoneNumberController.text,
         identityNo: identityNumberController.text,
-        fullName: fullnameController.text,
-
-        /// HC
-        phoneNo: '(022) 7271234',
-        bloodGroup: '0',
-        bornCity: 'Bandung',
-        bornDate: '1999-12-03',
-        citizen: 'WNI',
-        education: 'S1',
+        fullName: firstNameController.text + " " + lastNameController.text,
+        phoneNo: '(022) ${homeNumberController.text}',
+        bloodGroup: bloodGroupController.text,
+        bornCity: bornCityController.text,
+        bornDate: bornDateController.text,
+        citizen: citizenController.text,
+        education: educationController.text,
         employeeId: '',
-        familyCardNo: '4324211234560001',
-        gender: 'P',
+        familyCardNo: familyCardNoController.text,
+        gender: genderController.text.toUpperCase(),
         isDeleted: false,
-        maritalDate: '2020-04-20',
-        maritalStatus: '1',
-        passportNo: '123123123123123',
-        postalCode: '40287',
-        religion: '2',
-        salarySystem: 'NOT SET',
+        maritalDate: '1999-02-07',
+        maritalStatus: '0',
+        passportNo: '12345678',
+        postalCode: postalCodeController.text,
+        religion: religionController.text.contains('islam') ? '1' : '2',
+        salarySystem: salarySystem ? 'SET' : 'NOT SET',
       );
     } catch (e) {
       emit(
@@ -123,8 +135,7 @@ class EmployeeBloc extends Cubit<EmployeeState> {
       );
     }
 
-    Either<Failure, List<dynamic>> result =
-        await repository.createEmployee(entity!);
+    Either<Failure, int> result = await repository.createEmployee(entity!);
 
     EmployeeState stateResult = result.fold(
       (failure) {
@@ -157,6 +168,15 @@ class EmployeeBloc extends Cubit<EmployeeState> {
       (s) {
         logger.fine('Success data -> $s');
         listEmployee = s;
+
+        // var containst =
+        //     listEmployee!.where((element) => element.userId == App.main.idUser);
+        // if (containst.isEmpty) {
+        //   isAlreadyregisterEmployee = false;
+        // } else {
+        //   isAlreadyregisterEmployee = true;
+        // }
+
         return EmployeeSuccessState(employee: s);
       },
     );

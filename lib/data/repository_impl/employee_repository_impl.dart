@@ -56,8 +56,7 @@ class EmployeeRepositoryImpl extends EmployeeRepository {
   }
 
   @override
-  Future<Either<Failure, List<dynamic>>> createEmployee(
-      EmployeeEntity entity) async {
+  Future<Either<Failure, int>> createEmployee(EmployeeEntity entity) async {
     logger.fine('Do create => Token : ${accessToken}');
     try {
       Response response = await client.post(
@@ -94,7 +93,42 @@ class EmployeeRepositoryImpl extends EmployeeRepository {
 
       logger.fine('Success response => ${response.data}');
       if (response.statusCode == 201) {
-        return Right(EmployeeModel.parseEntries(response.data['data']));
+        return Right(response.statusCode!);
+      } else {
+        return Left(
+          RequestFailure(
+            code: response.statusCode ?? 500,
+            message: (response.data['message'] ??
+                    'Something wrong, please try again.')
+                .toString()
+                .replaceFirst('[', '')
+                .replaceAll(']', ''),
+          ),
+        );
+      }
+    } catch (e) {
+      logger.warning('Error -> $e');
+      return Left(
+        RequestFailure(
+          code: 500,
+          message: 'Something wrong, please try again.',
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, int>> getEmployeeByIdUser(String idUser) async {
+    logger.fine('Do login => Token : ${accessToken}');
+    try {
+      Response response = await client.get(
+        '/employee/by-user-id/$idUser}',
+        options:
+            Options(headers: {'Authorization': 'Bearer ${this.accessToken}'}),
+      );
+      logger.fine('Success response => ${response.data}');
+      if (response.statusCode == 200) {
+        return Right(response.statusCode!);
       } else {
         return Left(
           RequestFailure(

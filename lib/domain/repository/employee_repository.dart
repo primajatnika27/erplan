@@ -6,5 +6,7 @@ import '../entity/employee/employee_entity.dart';
 abstract class EmployeeRepository {
   Future<Either<Failure, List<EmployeeEntity>>> getListEmployee();
 
-  Future<Either<Failure, List<dynamic>>> createEmployee(EmployeeEntity entity);
+  Future<Either<Failure, int>> createEmployee(EmployeeEntity entity);
+
+  Future<Either<Failure, int>> getEmployeeByIdUser(String idUser);
 }

@@ -247,6 +247,64 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
                                   child: Padding(
                                     padding: EdgeInsets.only(right: 20.w),
                                     child: Text(
+                                      "Fullname",
+                                      style: TextStyle(
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: TextFormField(
+                                    controller:
+                                        _authRegisterBloc.fullnameController,
+                                    style: TextStyle(
+                                      fontSize: 16.sp,
+                                      color: Colors.white,
+                                    ),
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical: 5.h,
+                                      ),
+                                      hintText: 'Input fullname',
+                                      hintStyle: TextStyle(
+                                        fontSize: 14.sp,
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      border: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                              Color.fromRGBO(44, 150, 213, 1),
+                                        ),
+                                      ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                              Color.fromRGBO(44, 150, 213, 1),
+                                        ),
+                                      ),
+                                    ),
+                                    keyboardType: TextInputType.emailAddress,
+                                    validator: (value) {
+                                      if (value!.trim().isEmpty) {
+                                        return 'fullname is required.';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 35.h),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(right: 20.w),
+                                    child: Text(
                                       "Username",
                                       style: TextStyle(
                                         color: Color.fromRGBO(120, 125, 131, 1),

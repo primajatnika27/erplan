@@ -62,6 +62,7 @@ class AuthRegisterBloc extends Cubit<AuthRegisterState> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final TextEditingController usernameController = TextEditingController();
+  final TextEditingController fullnameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController rePasswordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -94,8 +95,8 @@ class AuthRegisterBloc extends Cubit<AuthRegisterState> {
       return;
     }
 
-    if (passwordController.text.length <= 6 &&
-        rePasswordController.text.length <= 6) {
+    if (passwordController.text.length < 6 &&
+        rePasswordController.text.length < 6) {
       emit(
         AuthRegisterFailedState(
           code: 500,
@@ -124,6 +125,7 @@ class AuthRegisterBloc extends Cubit<AuthRegisterState> {
         'Submit -> username: ${usernameController.text} | password: ${passwordController.text} | email: ${emailController.text}');
 
     Either<Failure, List<dynamic>> result = await repository.register(
+      fullname: fullnameController.text,
       phone: usernameController.text,
       password: passwordController.text,
       rePassword: rePasswordController.text,

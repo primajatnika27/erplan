@@ -7,9 +7,9 @@ import '../../../../../data/repository_impl/employee_repository_impl.dart';
 import '../../../../../helper/flushbar.dart';
 import '../../../../core/app.dart';
 import '../../../../widget/avatar_widget.dart';
-import '../../../../widget/block_loader.dart';
 import '../../../../widget/loader_widget.dart';
 import 'bloc.dart';
+import 'presentation/detail_employee/page.dart';
 
 class EmployeeMenuPage extends StatefulWidget {
   const EmployeeMenuPage({Key? key}) : super(key: key);
@@ -124,7 +124,15 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
                             Divider(height: 1.h, color: Colors.white38),
                             SizedBox(height: 5.h),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => DetailEmployeePage(
+                                      entity: state.employee![index],
+                                    ),
+                                  ),
+                                );
+                              },
                               child: Container(
                                 width: double.infinity,
                                 child: Center(

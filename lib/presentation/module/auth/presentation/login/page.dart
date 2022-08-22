@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../data/repository_impl/auth_repository_impl.dart';
 import '../../../../../helper/flushbar.dart';
@@ -73,15 +74,39 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                 SliverList(
                   delegate: SliverChildListDelegate(
                     [
-                      SizedBox(height: 250.h),
+                      SizedBox(height: 200.h),
+                      Padding(
+                        padding: EdgeInsets.only(left: 34.w),
+                        child: Text(
+                          'Welcome Back,',
+                          style: GoogleFonts.inter(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 34.w),
+                        child: Text(
+                          'Discover a better way for ERPLAN.',
+                          style: GoogleFonts.inter(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                            // color: const Color(0xFF50555C),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 50.h),
                       Padding(
                         padding: EdgeInsets.symmetric(horizontal: 34.w),
                         child: Column(
                           children: [
                             Row(
                               children: [
-                                Padding(
-                                  padding: EdgeInsets.only(right: 40.w),
+                                Expanded(
+                                  flex: 3,
                                   child: Text(
                                     "Email",
                                     style: TextStyle(
@@ -91,6 +116,7 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                                   ),
                                 ),
                                 Expanded(
+                                  flex: 7,
                                   child: TextFormField(
                                     controller: _authLoginBloc.phoneController,
                                     style: TextStyle(
@@ -134,8 +160,8 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                             SizedBox(height: 35.h),
                             Row(
                               children: [
-                                Padding(
-                                  padding: EdgeInsets.only(right: 20.w),
+                                Expanded(
+                                  flex: 3,
                                   child: Text(
                                     "Password",
                                     style: TextStyle(
@@ -145,6 +171,7 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                                   ),
                                 ),
                                 Expanded(
+                                  flex: 7,
                                   child: TextFormField(
                                     controller:
                                         _authLoginBloc.passwordController,

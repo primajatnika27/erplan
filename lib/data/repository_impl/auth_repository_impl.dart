@@ -68,6 +68,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, List>> register({
+    required String fullname,
     required String phone,
     required String password,
     required String rePassword,
@@ -80,7 +81,7 @@ class AuthRepositoryImpl implements AuthRepository {
       Response response = await client.post(
         '/auth/register',
         data: {
-          'full_name': phone,
+          'full_name': fullname,
           'username': phone,
           'email': email,
           'password': password,

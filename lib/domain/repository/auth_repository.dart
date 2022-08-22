@@ -10,6 +10,7 @@ abstract class AuthRepository {
   });
 
   Future<Either<Failure, List<dynamic>>> register({
+    required String fullname,
     required String phone,
     required String password,
     required String rePassword,

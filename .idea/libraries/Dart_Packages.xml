@@ -576,6 +576,13 @@
             </list>
           </value>
         </entry>
+        <entry key="google_fonts">
+          <value>
+            <list>
+              <option value="C:/sdk/flutter_2.10.0/.pub-cache/hosted/pub.dartlang.org/google_fonts-3.0.1/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="html">
           <value>
             <list>
@@ -1343,6 +1350,7 @@
       <root url="file://C:/sdk/flutter_2.10.0/.pub-cache/hosted/pub.dartlang.org/fwfh_url_launcher-0.6.1+3/lib" />
       <root url="file://C:/sdk/flutter_2.10.0/.pub-cache/hosted/pub.dartlang.org/fwfh_webview-0.6.2+2/lib" />
       <root url="file://C:/sdk/flutter_2.10.0/.pub-cache/hosted/pub.dartlang.org/get_it-7.2.0/lib" />
+      <root url="file://C:/sdk/flutter_2.10.0/.pub-cache/hosted/pub.dartlang.org/google_fonts-3.0.1/lib" />
       <root url="file://C:/sdk/flutter_2.10.0/.pub-cache/hosted/pub.dartlang.org/html-0.15.0/lib" />
       <root url="file://C:/sdk/flutter_2.10.0/.pub-cache/hosted/pub.dartlang.org/http-0.13.4/lib" />
       <root url="file://C:/sdk/flutter_2.10.0/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.0/lib" />
