@@ -691,21 +691,34 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
                               controller: _leaveBloc.leaveFromController,
                               readOnly: true,
                               onTap: () async {
-                                DateTime? pickedDate = await showDatePicker(
+                                DateTimeRange? pickedDate =
+                                    await showDateRangePicker(
                                   context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime(2000),
+                                  initialDateRange: DateTimeRange(
+                                      start: DateTime.now(),
+                                      end: DateTime.now()),
+                                  firstDate: DateTime.now(),
                                   lastDate: DateTime(2100),
                                 );
 
                                 if (pickedDate != null) {
-                                  String formattedDate =
+                                  String formattedDateStart =
                                       DateFormat('yyyy-MM-dd')
-                                          .format(pickedDate);
+                                          .format(pickedDate.start);
+
+                                  String formattedDateEnd =
+                                      DateFormat('yyyy-MM-dd')
+                                          .format(pickedDate.end);
 
                                   setState(() {
                                     _leaveBloc.leaveFromController.text =
-                                        formattedDate; //set output date to TextField value.
+                                        formattedDateStart; //set o
+
+                                    _leaveBloc.leaveToController.text =
+                                        formattedDateEnd; //// utput date
+
+                                    _leaveBloc.dateTimeToWork =
+                                        pickedDate.end; // to TextField value.
                                   });
                                 }
                               },
@@ -767,25 +780,6 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
                             child: TextFormField(
                               controller: _leaveBloc.leaveToController,
                               readOnly: true,
-                              onTap: () async {
-                                DateTime? pickedDate = await showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime(2000),
-                                  lastDate: DateTime(2100),
-                                );
-
-                                if (pickedDate != null) {
-                                  String formattedDate =
-                                      DateFormat('yyyy-MM-dd')
-                                          .format(pickedDate);
-
-                                  setState(() {
-                                    _leaveBloc.leaveToController.text =
-                                        formattedDate; //set output date to TextField value.
-                                  });
-                                }
-                              },
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 color: Colors.white,
@@ -793,10 +787,6 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
                               decoration: InputDecoration(
                                 prefixIcon: Icon(
                                   Icons.date_range,
-                                  size: 22.h,
-                                ),
-                                suffixIcon: Icon(
-                                  Icons.chevron_right_outlined,
                                   size: 22.h,
                                 ),
                                 label: Text("To"),
@@ -913,8 +903,16 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
                         onTap: () async {
                           DateTime? pickedDate = await showDatePicker(
                             context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(2000),
+                            initialDate: DateTime(
+                              _leaveBloc.dateTimeToWork.year,
+                              _leaveBloc.dateTimeToWork.month,
+                              _leaveBloc.dateTimeToWork.day + 1,
+                            ),
+                            firstDate: DateTime(
+                              _leaveBloc.dateTimeToWork.year,
+                              _leaveBloc.dateTimeToWork.month,
+                              _leaveBloc.dateTimeToWork.day + 1,
+                            ),
                             lastDate: DateTime(2100),
                           );
 

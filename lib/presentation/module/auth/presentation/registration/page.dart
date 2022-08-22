@@ -612,48 +612,44 @@ class _AuthRegistrationPageState extends State<AuthRegistrationPage> {
                     ],
                   ),
                 ),
-                SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: Container(
-                    alignment: Alignment.bottomCenter,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          color: Color.fromRGBO(43, 49, 56, 1),
-                          padding: EdgeInsets.symmetric(
-                            vertical: 20.h,
-                            horizontal: 16.w,
-                          ),
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              padding: MaterialStateProperty.resolveWith(
-                                (states) => EdgeInsets.symmetric(
-                                  horizontal: 6.w,
-                                  vertical: 10.w,
-                                ),
-                              ),
-                              shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.r)),
-                              ),
-                            ),
-                            onPressed: () {
-                              FocusScope.of(context).requestFocus(FocusNode());
-                              _authRegisterBloc.register();
-                            },
-                            child: Text(
-                              'Register',
-                              style: TextStyle(
-                                fontSize: 18.sp,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
+              ],
+            ),
+          ),
+          bottomNavigationBar: Padding(
+            padding: MediaQuery.of(context).viewInsets,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  color: Color.fromRGBO(43, 49, 56, 1),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 20.h,
+                    horizontal: 16.w,
+                  ),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      padding: MaterialStateProperty.resolveWith(
+                        (states) => EdgeInsets.symmetric(
+                          horizontal: 6.w,
+                          vertical: 10.w,
                         ),
-                      ],
+                      ),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.r)),
+                      ),
+                    ),
+                    onPressed: () {
+                      FocusScope.of(context).requestFocus(FocusNode());
+                      _authRegisterBloc.register();
+                    },
+                    child: Text(
+                      'Register',
+                      style: TextStyle(
+                        fontSize: 18.sp,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),

@@ -122,7 +122,7 @@ class EmployeeRepositoryImpl extends EmployeeRepository {
     logger.fine('Do login => Token : ${accessToken}');
     try {
       Response response = await client.get(
-        '/employee/by-user-id/$idUser}',
+        '/employee/by-user-id/$idUser',
         options:
             Options(headers: {'Authorization': 'Bearer ${this.accessToken}'}),
       );

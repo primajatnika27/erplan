@@ -95,6 +95,8 @@ class LeaveBloc extends Cubit<LeaveState> {
 
   final TextEditingController reasonController = TextEditingController();
 
+  DateTime dateTimeToWork = DateTime.now();
+
   LeaveBloc({required this.repository}) : super(LeaveInitialState());
 
   Future<void> getLeaveType() async {

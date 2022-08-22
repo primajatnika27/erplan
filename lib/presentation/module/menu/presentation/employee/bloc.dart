@@ -74,6 +74,7 @@ class EmployeeBloc extends Cubit<EmployeeState> {
   TextEditingController bloodGroupController = TextEditingController();
   TextEditingController bornCityController = TextEditingController();
   TextEditingController bornDateController = TextEditingController();
+  TextEditingController maritalDateController = TextEditingController();
   TextEditingController citizenController = TextEditingController();
   TextEditingController educationController = TextEditingController();
   TextEditingController familyCardNoController = TextEditingController();
@@ -85,6 +86,7 @@ class EmployeeBloc extends Cubit<EmployeeState> {
   TextEditingController bankAccountNumberController = TextEditingController();
 
   bool salarySystem = false;
+  bool isMarital = false;
 
   EmployeeBloc({required this.repository}) : super(EmployeeInitialState());
 
@@ -122,9 +124,11 @@ class EmployeeBloc extends Cubit<EmployeeState> {
         familyCardNo: familyCardNoController.text,
         gender: genderController.text.toUpperCase(),
         isDeleted: false,
-        maritalDate: '1999-02-07',
-        maritalStatus: '0',
-        passportNo: '12345678',
+        maritalDate: isMarital ? maritalDateController.text : '1999-01-01',
+        maritalStatus: isMarital ? '1' : '0',
+        passportNo: passportNoController.text.isEmpty
+            ? '000000'
+            : passportNoController.text,
         postalCode: postalCodeController.text,
         religion: religionController.text.contains('islam') ? '1' : '2',
         salarySystem: salarySystem ? 'SET' : 'NOT SET',
@@ -178,6 +182,28 @@ class EmployeeBloc extends Cubit<EmployeeState> {
         // }
 
         return EmployeeSuccessState(employee: s);
+      },
+    );
+
+    emit(stateResult);
+  }
+
+  Future<void> getEmployeeByIdUser() async {
+    emit(EmployeeLoadingState());
+
+    logger.fine('Get Employee By Id User');
+
+    Either<Failure, int> result =
+        await repository.getEmployeeByIdUser(App.main.idUser);
+
+    EmployeeState stateResult = result.fold(
+      (failure) {
+        logger.warning('Failed data -> $failure');
+        RequestFailure f = failure as RequestFailure;
+        return EmployeeRegisterGoState();
+      },
+      (s) {
+        return EmployeeSuccessState();
       },
     );
 

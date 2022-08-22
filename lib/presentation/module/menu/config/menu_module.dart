@@ -29,7 +29,7 @@ class MenuModule extends Module {
         ),
         ChildRoute(
           '/detail/employee',
-          child: (_, args) => DetailEmployeePage(),
+          child: (_, args) => DetailEmployeePage(entity: args.data),
           transition: TransitionType.rightToLeft,
         ),
         ChildRoute(

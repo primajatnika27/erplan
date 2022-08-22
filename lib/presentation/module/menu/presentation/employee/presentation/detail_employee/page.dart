@@ -160,7 +160,38 @@ class _DetailEmployeePageState extends State<DetailEmployeePage> {
                   ),
                 ),
 
-                /// ID EMPLOYEE
+                /// Bank Name
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Text(
+                        'Bank Name',
+                        style: TextStyle(
+                          color: Color.fromRGBO(120, 125, 131, 1),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Text(
+                        '${widget.entity!.bankName}',
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                    ],
+                  ),
+                ),
+
+                /// Education
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15.w),
                   child: Column(
@@ -242,6 +273,68 @@ class _DetailEmployeePageState extends State<DetailEmployeePage> {
                       ),
                       Text(
                         '${widget.entity!.phoneNo}',
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                    ],
+                  ),
+                ),
+
+                /// Born Date
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Text(
+                        'Born Date',
+                        style: TextStyle(
+                          color: Color.fromRGBO(120, 125, 131, 1),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Text(
+                        '${widget.entity!.bornDate}',
+                        style: TextStyle(
+                          color: Colors.black,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                    ],
+                  ),
+                ),
+
+                /// Born Date
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 15.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Text(
+                        'Gender',
+                        style: TextStyle(
+                          color: Color.fromRGBO(120, 125, 131, 1),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 5.h,
+                      ),
+                      Text(
+                        '${widget.entity!.gender == 'L' ? 'Male' : 'Female'}',
                         style: TextStyle(
                           color: Colors.black,
                         ),

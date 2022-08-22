@@ -125,12 +125,9 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
                             SizedBox(height: 5.h),
                             ElevatedButton(
                               onPressed: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => DetailEmployeePage(
-                                      entity: state.employee![index],
-                                    ),
-                                  ),
+                                Modular.to.pushNamed(
+                                  '/home/detail/employee',
+                                  arguments: state.employee![index],
                                 );
                               },
                               child: Container(
@@ -159,16 +156,16 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton.small(
-        onPressed: () {
-          Modular.to.pushNamed('/home/create/employee');
-        },
-        child: Icon(
-          Icons.add,
-          color: Colors.white,
-        ),
-        backgroundColor: Colors.pink,
-      ),
+      // floatingActionButton: FloatingActionButton.small(
+      //   onPressed: () {
+      //     Modular.to.pushNamed('/home/create/employee');
+      //   },
+      //   child: Icon(
+      //     Icons.add,
+      //     color: Colors.white,
+      //   ),
+      //   backgroundColor: Colors.pink,
+      // ),
     );
   }
 

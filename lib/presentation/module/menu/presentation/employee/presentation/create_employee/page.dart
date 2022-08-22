@@ -56,12 +56,7 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
             Navigator.of(context).pop();
             showFlushbar(context, state.message, isError: true);
           } else if (state is EmployeeRegisterGoState) {
-            try {
-              await Future.delayed(Duration(seconds: 1));
-              Modular.to.pop();
-            } catch (e) {
-              Navigator.of(context).pop();
-            }
+            Modular.to.pushReplacementNamed('/home/');
           }
         },
         child: Scaffold(
@@ -177,6 +172,44 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                             ),
                             SizedBox(height: 35.h),
 
+                            /// Pasport Field
+                            TextFormField(
+                              controller: _employeeBloc.passportNoController,
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                color: Colors.white,
+                              ),
+                              decoration: InputDecoration(
+                                floatingLabelBehavior:
+                                    FloatingLabelBehavior.always,
+                                label: Text('Pasport No.'),
+                                labelStyle: TextStyle(
+                                  color: Color.fromRGBO(120, 125, 131, 1),
+                                ),
+                                isDense: true,
+                                contentPadding: EdgeInsets.symmetric(
+                                  vertical: 5.h,
+                                ),
+                                hintText: 'Please input your pasport number',
+                                hintStyle: TextStyle(
+                                  fontSize: 14.sp,
+                                  color: Color.fromRGBO(120, 125, 131, 1),
+                                ),
+                                border: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color.fromRGBO(44, 150, 213, 1),
+                                  ),
+                                ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color.fromRGBO(44, 150, 213, 1),
+                                  ),
+                                ),
+                              ),
+                              keyboardType: TextInputType.number,
+                            ),
+                            SizedBox(height: 35.h),
+
                             /// Fullname Field
                             Row(
                               children: [
@@ -289,8 +322,8 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                                 DateTime? pickedDate = await showDatePicker(
                                   context: context,
                                   initialDate: DateTime.now(),
-                                  firstDate: DateTime(2000),
-                                  lastDate: DateTime(2100),
+                                  firstDate: DateTime(1800),
+                                  lastDate: DateTime.now(),
                                 );
 
                                 if (pickedDate != null) {
@@ -353,6 +386,110 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                               },
                             ),
                             SizedBox(height: 35.h),
+
+                            /// isMarital
+                            Row(
+                              children: [
+                                Text(
+                                  'Marital Status',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                Checkbox(
+                                  value: _employeeBloc.isMarital,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      _employeeBloc.isMarital = value!;
+                                      _employeeBloc.maritalDateController.text =
+                                          '';
+                                    });
+                                  },
+                                )
+                              ],
+                            ),
+                            Visibility(
+                              visible: !_employeeBloc.isMarital,
+                              child: SizedBox(height: 35.h),
+                            ),
+
+                            /// Marital Date Field
+                            Visibility(
+                              visible: _employeeBloc.isMarital,
+                              child: Column(
+                                children: [
+                                  TextFormField(
+                                    controller:
+                                        _employeeBloc.maritalDateController,
+                                    readOnly: true,
+                                    onTap: () async {
+                                      DateTime? pickedDate =
+                                          await showDatePicker(
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime(1800),
+                                        lastDate: DateTime.now(),
+                                      );
+
+                                      if (pickedDate != null) {
+                                        String formattedDate =
+                                            DateFormat('yyyy-MM-dd')
+                                                .format(pickedDate);
+
+                                        setState(() {
+                                          _employeeBloc
+                                                  .maritalDateController.text =
+                                              formattedDate; //set output date to TextField value.
+                                        });
+                                      }
+                                    },
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color: Colors.white,
+                                    ),
+                                    decoration: InputDecoration(
+                                      suffixIcon: Icon(
+                                        Icons.chevron_right_outlined,
+                                        size: 22.h,
+                                      ),
+                                      label: Text("Marital Date"),
+                                      labelStyle: TextStyle(
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      floatingLabelBehavior:
+                                          FloatingLabelBehavior.always,
+                                      isDense: true,
+                                      contentPadding: EdgeInsets.symmetric(
+                                        vertical: 5.h,
+                                      ),
+                                      hintText: 'Date',
+                                      hintStyle: TextStyle(
+                                        fontSize: 14.sp,
+                                        color: Color.fromRGBO(120, 125, 131, 1),
+                                      ),
+                                      border: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white54,
+                                        ),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white54,
+                                        ),
+                                      ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white54,
+                                        ),
+                                      ),
+                                    ),
+                                    keyboardType: TextInputType.emailAddress,
+                                  ),
+                                  SizedBox(height: 35.h),
+                                ],
+                              ),
+                            ),
 
                             /// Bord City Field
                             TextFormField(
@@ -1101,7 +1238,8 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
               ],
             ),
           ),
-          bottomNavigationBar: Container(
+          bottomNavigationBar: Padding(
+            padding: MediaQuery.of(context).viewInsets,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
