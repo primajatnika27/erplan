@@ -62,7 +62,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
             if (state is EmployeeSuccessState) {
               Navigator.of(context).pop();
 
-              Modular.to.pushNamed('/home/employee');
+              Modular.to.pushNamed('/home/leaves');
             }
 
             if (state is EmployeeRegisterGoState) {
@@ -99,7 +99,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
                     Card(
                       child: InkWell(
                         onTap: () {
-                          _employeeBloc.getEmployeeByIdUser();
+                          Modular.to.pushNamed('/home/employee');
                         },
                         child: Column(
                           children: [
@@ -126,7 +126,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
                     Card(
                       child: InkWell(
                         onTap: () {
-                          Modular.to.pushNamed('/home/leaves');
+                          _employeeBloc.getEmployeeByIdUser();
                         },
                         child: Column(
                           children: [
