@@ -26,7 +26,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
         client: App.main.clientAuth,
         accessToken: App.main.accessToken,
       ),
-    )..getEmployeeByIdUser();
+    );
 
     super.initState();
   }
@@ -59,12 +59,31 @@ class _MainMenuPageState extends State<MainMenuPage> {
               );
             }
 
-            if (state is EmployeeFailedState) {
+            if (state is EmployeeSuccessState) {
               Navigator.of(context).pop();
+
+              Modular.to.pushNamed('/home/employee');
             }
 
             if (state is EmployeeRegisterGoState) {
-              Modular.to.navigate('/home/create/employee');
+              Navigator.of(context).pop();
+
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text('Employee'),
+                  content: Text(
+                      'Your Account not Registered on Employee.\n\nPlease register now!'),
+                  actions: [
+                    ElevatedButton(
+                      child: Text("Register"),
+                      onPressed: () {
+                        Modular.to.navigate('/home/create/employee');
+                      },
+                    ),
+                  ],
+                ),
+              );
             }
           },
           child: CustomScrollView(
@@ -80,7 +99,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
                     Card(
                       child: InkWell(
                         onTap: () {
-                          Modular.to.pushNamed('/home/employee');
+                          _employeeBloc.getEmployeeByIdUser();
                         },
                         child: Column(
                           children: [
