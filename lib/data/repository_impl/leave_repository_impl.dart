@@ -6,8 +6,10 @@ import '../../domain/entity/leave/leave_entity.dart';
 import '../../domain/entity/leave/leave_type_entity.dart';
 import 'package:dartz/dartz.dart';
 
+import '../../domain/entity/leave/list_leave_entity.dart';
 import '../../domain/repository/leave_repository.dart';
 import '../model/leave/leave_type_model.dart';
+import '../model/leave/list_leave_model.dart';
 
 class LeaveRepositoryImpl extends LeaveRepository {
   final Dio client;
@@ -121,6 +123,41 @@ class LeaveRepositoryImpl extends LeaveRepository {
       logger.fine('Success response => ${response.data}');
       if (response.statusCode == 201) {
         return Right(response.data);
+      } else {
+        return Left(
+          RequestFailure(
+            code: response.statusCode ?? 500,
+            message: (response.data['message'] ??
+                    'Something wrong, please try again.')
+                .toString()
+                .replaceFirst('[', '')
+                .replaceAll(']', ''),
+          ),
+        );
+      }
+    } catch (e) {
+      logger.warning('Error -> $e');
+      return Left(
+        RequestFailure(
+          code: 500,
+          message: 'Something wrong, please try again.',
+        ),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ListLeaveEntity>>> getListLeave() async {
+    logger.fine('Do login => Token : ${accessToken}');
+    try {
+      Response response = await client.get(
+        '/leave/list/for-employee/pagination',
+        options:
+            Options(headers: {'Authorization': 'Bearer ${this.accessToken}'}),
+      );
+      logger.fine('Success response => ${response.data}');
+      if (response.statusCode == 200) {
+        return Right(ListLeaveModel.parseEntries(response.data['data']));
       } else {
         return Left(
           RequestFailure(

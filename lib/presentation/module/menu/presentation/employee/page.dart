@@ -9,7 +9,6 @@ import '../../../../core/app.dart';
 import '../../../../widget/avatar_widget.dart';
 import '../../../../widget/loader_widget.dart';
 import 'bloc.dart';
-import 'presentation/detail_employee/page.dart';
 
 class EmployeeMenuPage extends StatefulWidget {
   const EmployeeMenuPage({Key? key}) : super(key: key);

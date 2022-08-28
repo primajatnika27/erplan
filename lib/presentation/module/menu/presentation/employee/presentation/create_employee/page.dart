@@ -115,7 +115,7 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                               keyboardType: TextInputType.number,
                               validator: (value) {
                                 if (value!.trim().isEmpty) {
-                                  return 'identity no is required.';
+                                  return 'identity no required 16 number.';
                                 }
 
                                 if (value.length < 16) {
@@ -164,7 +164,11 @@ class _CreateEmployeePageState extends State<CreateEmployeePage> {
                               keyboardType: TextInputType.number,
                               validator: (value) {
                                 if (value!.trim().isEmpty) {
-                                  return 'identity no is required.';
+                                  return 'identity no required 16 number.';
+                                }
+
+                                if (value.length < 16) {
+                                  return 'identity no required 16 number.';
                                 }
 
                                 return null;

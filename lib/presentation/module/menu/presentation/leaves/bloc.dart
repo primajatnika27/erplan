@@ -9,6 +9,7 @@ import '../../../../../data/model/leave/approval_leave_enum.dart';
 import '../../../../../domain/entity/employee/employee_entity.dart';
 import '../../../../../domain/entity/leave/leave_entity.dart';
 import '../../../../../domain/entity/leave/leave_type_entity.dart';
+import '../../../../../domain/entity/leave/list_leave_entity.dart';
 import '../../../../../domain/repository/leave_repository.dart';
 import '../../../../core/app.dart';
 
@@ -44,6 +45,17 @@ class LeaveFailedState extends LeaveState {
 class LeaveTypeSuccessState extends LeaveState {
   final List<LeaveTypeEntity>? entity;
   LeaveTypeSuccessState({
+    required this.entity,
+  });
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [entity];
+}
+
+class LeaveListSuccessState extends LeaveState {
+  final List<ListLeaveEntity>? entity;
+  LeaveListSuccessState({
     required this.entity,
   });
 
@@ -166,6 +178,30 @@ class LeaveBloc extends Cubit<LeaveState> {
       },
       (s) {
         return LeaveSaveSuccessState();
+      },
+    );
+
+    emit(stateResult);
+  }
+
+  Future<void> getListLeave() async {
+    emit(LeaveTypeLoadingState());
+
+    logger.fine('Get List Leave');
+
+    Either<Failure, List<ListLeaveEntity>> result =
+        await repository.getListLeave();
+
+    LeaveState stateResult = result.fold(
+      (failure) {
+        logger.warning('Failed data -> $failure');
+        RequestFailure f = failure as RequestFailure;
+        return LeaveFailedState(code: f.code, message: f.message);
+      },
+      (s) {
+        logger.fine('Success data -> $s');
+        List<ListLeaveEntity> _data = s;
+        return LeaveListSuccessState(entity: _data);
       },
     );
 

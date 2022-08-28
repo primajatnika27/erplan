@@ -62,7 +62,7 @@ class _MainMenuPageState extends State<MainMenuPage> {
             if (state is EmployeeSuccessState) {
               Navigator.of(context).pop();
 
-              Modular.to.pushNamed('/home/leaves');
+              Modular.to.pushNamed('/home/list/leaves');
             }
 
             if (state is EmployeeRegisterGoState) {
