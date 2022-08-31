@@ -1,5 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../presentation/approval/approval_detail/page.dart';
+import '../presentation/approval/page.dart';
 import '../presentation/employee/page.dart';
 import '../presentation/employee/presentation/create_employee/page.dart';
 import '../presentation/employee/presentation/detail_employee/page.dart';
@@ -41,6 +43,16 @@ class MenuModule extends Module {
         ChildRoute(
           '/leaves',
           child: (_, args) => LeavesMenuPage(),
+          transition: TransitionType.rightToLeft,
+        ),
+        ChildRoute(
+          '/approval',
+          child: (_, args) => ApprovalPage(),
+          transition: TransitionType.rightToLeft,
+        ),
+        ChildRoute(
+          '/approval/details',
+          child: (_, args) => ApprovalDetailPage(entity: args.data),
           transition: TransitionType.rightToLeft,
         ),
       ];

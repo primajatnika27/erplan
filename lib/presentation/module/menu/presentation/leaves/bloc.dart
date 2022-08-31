@@ -71,7 +71,7 @@ class LeaveSaveSuccessState extends LeaveState {
 class LeaveBloc extends Cubit<LeaveState> {
   final LeaveRepository repository;
 
-  final Logger logger = Logger('EmployeeBloc');
+  final Logger logger = Logger('LeaveBloc');
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   ApprovalLeaveEnum? approvalLeave;
@@ -150,12 +150,12 @@ class LeaveBloc extends Cubit<LeaveState> {
     try {
       entity = LeaveEntity(
         idEmployee: employeeSelectEntity!.employeeId,
-        idReplaceEmployee: replaceEmployeeEntity!.userId,
-        idApproval1: approvalSpvEntity!.userId,
-        idApproval2: approvalSpvEntity!.userId,
-        idApprovalHrd1: approvalHrCheckerEntity!.userId,
-        idApprovalHrd2: approvalHrHeadEntity!.userId,
-        idApprovalDirection: approvalDirectionEntity!.userId,
+        idReplaceEmployee: replaceEmployeeEntity!.employeeId,
+        idApproval1: approvalSpvEntity!.employeeId,
+        idApproval2: approvalSpvEntity!.employeeId,
+        idApprovalHrd1: approvalHrCheckerEntity!.employeeId,
+        idApprovalHrd2: approvalHrHeadEntity!.employeeId,
+        idApprovalDirection: approvalDirectionEntity!.employeeId,
         leaveFrom: leaveFromController.text,
         leaveTo: leaveToController.text,
         returnWork: returnDateController.text,

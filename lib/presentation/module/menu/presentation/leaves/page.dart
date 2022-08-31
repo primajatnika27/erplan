@@ -278,6 +278,7 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
                                         onChanged: (value) {
                                           _leaveBloc.replaceEmployeeController
                                               .text = value!.fullName;
+
                                           _leaveBloc.replaceEmployeeEntity =
                                               value;
                                           Navigator.pop(context);

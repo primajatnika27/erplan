@@ -103,6 +103,9 @@ class _MainMenuPageState extends State<MainMenuPage> {
                         },
                         child: Column(
                           children: [
+                            SizedBox(
+                              height: 10.h,
+                            ),
                             Image.asset(
                               'assets/images/menu/ic_menu_employee.png',
                               height: 80.h,
@@ -130,6 +133,9 @@ class _MainMenuPageState extends State<MainMenuPage> {
                         },
                         child: Column(
                           children: [
+                            SizedBox(
+                              height: 10.h,
+                            ),
                             Image.asset(
                               'assets/images/menu/ic_menu_leaves.png',
                               height: 80.h,
@@ -140,6 +146,36 @@ class _MainMenuPageState extends State<MainMenuPage> {
                                 padding: EdgeInsets.only(top: 10.h),
                                 child: Text(
                                   "Leaves",
+                                  style: TextStyle(
+                                    color: Colors.white54,
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    Card(
+                      child: InkWell(
+                        onTap: () {
+                          Modular.to.pushNamed('/home/approval');
+                        },
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                            Image.asset(
+                              'assets/images/menu/ic_menu_approval.png',
+                              height: 80.h,
+                              width: 80.h,
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.only(top: 10.h),
+                                child: Text(
+                                  "Approval",
                                   style: TextStyle(
                                     color: Colors.white54,
                                   ),
