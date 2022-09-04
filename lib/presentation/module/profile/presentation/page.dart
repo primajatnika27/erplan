@@ -20,7 +20,7 @@ class _ProfilePageState extends State<ProfilePage> {
         actions: [
           ElevatedButton(
             onPressed: () {
-              Modular.to.navigate('/auth/login');
+              Modular.to.navigate('/auth/logout');
             },
             child: Text("Logout"),
             style: ButtonStyle(

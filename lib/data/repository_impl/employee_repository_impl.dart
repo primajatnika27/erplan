@@ -25,7 +25,7 @@ class EmployeeRepositoryImpl extends EmployeeRepository {
     logger.fine('Do login => Token : ${accessToken}');
     try {
       Response response = await client.get(
-        '/employee/list',
+        '/api/employee/list',
         options:
             Options(headers: {'Authorization': 'Bearer ${this.accessToken}'}),
       );
@@ -60,7 +60,7 @@ class EmployeeRepositoryImpl extends EmployeeRepository {
     logger.fine('Do create => Token : ${accessToken}');
     try {
       Response response = await client.post(
-        '/employee/',
+        '/api/employee/',
         data: {
           'user_id': entity.userId,
           'address_city': entity.addressCity,
@@ -122,7 +122,7 @@ class EmployeeRepositoryImpl extends EmployeeRepository {
     logger.fine('Do login => Token : ${accessToken}');
     try {
       Response response = await client.get(
-        '/employee/by-user-id/$idUser',
+        '/api/employee/by-user-id/$idUser',
         options:
             Options(headers: {'Authorization': 'Bearer ${this.accessToken}'}),
       );

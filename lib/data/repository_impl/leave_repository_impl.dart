@@ -29,7 +29,7 @@ class LeaveRepositoryImpl extends LeaveRepository {
     logger.fine('Do login => Token : ${accessToken}');
     try {
       Response response = await client.get(
-        '/ref/leave-type',
+        '/api/ref/leave-type',
         options:
             Options(headers: {'Authorization': 'Bearer ${this.accessToken}'}),
       );
@@ -64,7 +64,7 @@ class LeaveRepositoryImpl extends LeaveRepository {
     logger.fine('Do login => Token : ${accessToken}');
     try {
       Response response = await client.post(
-        '/leave/',
+        '/api/leave/',
         options:
             Options(headers: {'Authorization': 'Bearer ${this.accessToken}'}),
         data: {
@@ -151,7 +151,7 @@ class LeaveRepositoryImpl extends LeaveRepository {
     logger.fine('Do login => Token : ${accessToken}');
     try {
       Response response = await client.get(
-        '/leave/list/for-employee/pagination',
+        '/api/leave/list/for-employee/pagination',
         options:
             Options(headers: {'Authorization': 'Bearer ${this.accessToken}'}),
       );

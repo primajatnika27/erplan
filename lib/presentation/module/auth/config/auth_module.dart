@@ -15,6 +15,11 @@ class AuthModule extends Module {
           transition: TransitionType.rightToLeft,
         ),
         ChildRoute(
+          '/logout',
+          child: (_, args) => AuthLoginPage(),
+          transition: TransitionType.leftToRight,
+        ),
+        ChildRoute(
           '/register',
           child: (_, args) => AuthRegistrationPage(),
           transition: TransitionType.rightToLeft,

@@ -24,7 +24,7 @@ class DepartmentRepositoryImpl extends DepartmentRepository {
   Future<Either<Failure, List<DepartmentEntity>>> getListDepartment() async {
     try {
       Response response = await client.get(
-        '/ref/department',
+        '/api/ref/department',
         options: Options(headers: {
           'Authorization':
               'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYmViYjE0MzQtMDQ0Ny00MmM0LTk3NDMtNTgyYTc3Y2I1NzYwIiwiZXhwIjoxNjg4MjU5NzIxLCJpYXQiOjE2NTY3MjM3MjEsImlzcyI6ImFkbWluIn0.wGH_g314kzUgPL2FswS_fNqbq_BO47zXdH5cnCH_SJI'

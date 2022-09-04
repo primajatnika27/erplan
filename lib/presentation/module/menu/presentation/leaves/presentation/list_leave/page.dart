@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../../../data/repository_impl/leave_repository_impl.dart';
 import '../../../../../../../helper/flushbar.dart';
@@ -19,6 +20,9 @@ class ListLeavePage extends StatefulWidget {
 
 class _ListLeavePageState extends State<ListLeavePage> {
   late LeaveBloc _leaveBloc;
+
+  RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
 
   @override
   void initState() {
@@ -38,6 +42,10 @@ class _ListLeavePageState extends State<ListLeavePage> {
     return dateFormatted;
   }
 
+  void _onRefresh() async {
+    _leaveBloc.getListLeave();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,97 +55,107 @@ class _ListLeavePageState extends State<ListLeavePage> {
         centerTitle: false,
         elevation: 2.0,
       ),
-      body: BlocProvider(
-        create: (context) => _leaveBloc,
-        child: BlocConsumer<LeaveBloc, LeaveState>(
-          listener: (context, state) {
-            if (state is LeaveFailedState) {
-              Navigator.of(context).pop();
-              showFlushbar(context, state.message, isError: true);
-            }
-          },
-          builder: (context, state) {
-            if (state is LeaveListSuccessState) {
-              return ListView.builder(
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.w),
-                    child: Card(
-                      elevation: 2.0,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 20.h, vertical: 10.h),
-                        child: Column(
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: 10.h),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '${state.entity?[index].employeeLeave.fullName}',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
+      body: SmartRefresher(
+        controller: _refreshController,
+        enablePullDown: true,
+        onRefresh: _onRefresh,
+        header: WaterDropHeader(),
+        child: BlocProvider(
+          create: (context) => _leaveBloc,
+          child: BlocConsumer<LeaveBloc, LeaveState>(
+            listener: (context, state) {
+              if (state is LeaveFailedState) {
+                Navigator.of(context).pop();
+                showFlushbar(context, state.message, isError: true);
+              }
+
+              if (state is LeaveListSuccessState) {
+                _refreshController.loadComplete();
+              }
+            },
+            builder: (context, state) {
+              if (state is LeaveListSuccessState) {
+                return ListView.builder(
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10.w),
+                      child: Card(
+                        elevation: 2.0,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20.h, vertical: 10.h),
+                          child: Column(
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 10.h),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            '${state.entity?[index].employeeLeave.fullName}',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 5.h,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                'From : ${dateFormat(state.entity?[index].startTimeLeave ?? DateTime.now())}',
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
+                                          SizedBox(
+                                            height: 5.h,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  'From : ${dateFormat(state.entity?[index].startTimeLeave ?? DateTime.now())}',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                'To : ${dateFormat(state.entity?[index].endTimeLeave ?? DateTime.now())}',
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
+                                              Expanded(
+                                                child: Text(
+                                                  'To : ${dateFormat(state.entity?[index].endTimeLeave ?? DateTime.now())}',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 25.h,
-                                        ),
-                                        Text(
-                                          'Reason : ${state.entity?[index].reason}',
-                                        ),
-                                      ],
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 25.h,
+                                          ),
+                                          Text(
+                                            'Reason : ${state.entity?[index].reason}',
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 15.h),
-                          ],
+                                ],
+                              ),
+                              SizedBox(height: 15.h),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                },
-                itemCount: state.entity?.length,
-              );
-            }
+                    );
+                  },
+                  itemCount: state.entity?.length,
+                );
+              }
 
-            return Center(
-              child: Container(
-                height: 100.h,
-                child: LoaderWidget(),
-              ),
-            );
-          },
+              return Center(
+                child: Container(
+                  height: 100.h,
+                  child: LoaderWidget(),
+                ),
+              );
+            },
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton.small(

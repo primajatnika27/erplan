@@ -2,7 +2,7 @@ import 'dart:ui';
 
 class Config {
   static final String baseUrl = "https://go-server-app.herokuapp.com";
-  static final String baseUrlAuth = "https://go-server-app.herokuapp.com/v1/api";
+  static final String baseUrlAuth = "https://go-server-app.herokuapp.com/v1";
   static final String versionCode = "1";
 }
 

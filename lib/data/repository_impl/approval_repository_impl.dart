@@ -27,7 +27,7 @@ class ApprovalRepositoryImpl extends ApprovalRepository {
     logger.fine('Do login => Token : ${accessToken}');
     try {
       Response response = await client.get(
-        '/leave/list/for-approval/pagination',
+        '/api/leave/list/for-approval/pagination',
         options:
             Options(headers: {'Authorization': 'Bearer ${this.accessToken}'}),
       );
@@ -64,7 +64,7 @@ class ApprovalRepositoryImpl extends ApprovalRepository {
     logger.fine('Do login => Token : ${accessToken}');
     try {
       Response response = await client.get(
-        '/leave/list/for-replacement/pagination',
+        '/api/leave/list/for-replacement/pagination',
         options:
             Options(headers: {'Authorization': 'Bearer ${this.accessToken}'}),
       );
@@ -96,16 +96,82 @@ class ApprovalRepositoryImpl extends ApprovalRepository {
   }
 
   @override
-  Future<Either<Failure, void>> approval(
-      String leaveId, String employeeId, String comment) {
-    // TODO: implement approval
-    throw UnimplementedError();
+  Future<Either<Failure, void>> approval(String approvalId, String leaveId,
+      String employeeId, String comment) async {
+    logger.fine('Do login => Token : ${accessToken}');
+    try {
+      Response response = await client.put('${approvalId}',
+          options:
+              Options(headers: {'Authorization': 'Bearer ${this.accessToken}'}),
+          data: {
+            "leave_id": leaveId,
+            "employee_id": employeeId,
+            "comment": comment,
+          });
+
+      logger.fine('Success response => ${response.data}');
+      if (response.statusCode == 201) {
+        return Right(response.statusCode);
+      } else {
+        return Left(
+          RequestFailure(
+            code: response.statusCode ?? 500,
+            message: (response.data['message'] ??
+                    'Something wrong, please try again.')
+                .toString()
+                .replaceFirst('[', '')
+                .replaceAll(']', ''),
+          ),
+        );
+      }
+    } catch (e) {
+      logger.warning('Error -> $e');
+      return Left(
+        RequestFailure(
+          code: 500,
+          message: 'Something wrong, please try again.',
+        ),
+      );
+    }
   }
 
   @override
-  Future<Either<Failure, void>> reject(
-      String leaveId, String employeeId, String comment) {
-    // TODO: implement reject
-    throw UnimplementedError();
+  Future<Either<Failure, void>> reject(String approvalId, String leaveId,
+      String employeeId, String comment) async {
+    logger.fine('Do login => Token : ${accessToken}');
+    try {
+      Response response = await client.put('${approvalId}',
+          options:
+              Options(headers: {'Authorization': 'Bearer ${this.accessToken}'}),
+          data: {
+            "leave_id": leaveId,
+            "employee_id": employeeId,
+            "comment": comment,
+          });
+
+      logger.fine('Success response => ${response.data}');
+      if (response.statusCode == 201) {
+        return Right(response.statusCode);
+      } else {
+        return Left(
+          RequestFailure(
+            code: response.statusCode ?? 500,
+            message: (response.data['message'] ??
+                    'Something wrong, please try again.')
+                .toString()
+                .replaceFirst('[', '')
+                .replaceAll(']', ''),
+          ),
+        );
+      }
+    } catch (e) {
+      logger.warning('Error -> $e');
+      return Left(
+        RequestFailure(
+          code: 500,
+          message: 'Something wrong, please try again.',
+        ),
+      );
+    }
   }
 }

@@ -26,8 +26,7 @@ class _SplashPageState extends State<SplashPage> {
       body: MultiBlocListener(
         listeners: [
           BlocListener<FirebaseMessageBloc, FirebaseMessageState>(
-            listener:
-                (BuildContext context, FirebaseMessageState state) async {
+            listener: (BuildContext context, FirebaseMessageState state) async {
               if (state is FirebaseMessageGetTokenState) {
                 await Future.delayed(Duration(milliseconds: 500));
                 try {
@@ -46,17 +45,13 @@ class _SplashPageState extends State<SplashPage> {
             },
           ),
         ],
-        child: Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage("assets/images/intro.png"),
-                  fit: BoxFit.cover,
-                ),
-              ),
+        child: Center(
+          child: Text(
+            "ERPLAN",
+            style: TextStyle(
+              color: Colors.white,
             ),
-          ],
+          ),
         ),
       ),
     );

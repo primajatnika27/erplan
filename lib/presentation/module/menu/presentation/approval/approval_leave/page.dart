@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
@@ -63,64 +64,82 @@ class _ApprovalLeavePageState extends State<ApprovalLeavePage> {
                     padding: EdgeInsets.symmetric(horizontal: 10.w),
                     child: Card(
                       elevation: 2.0,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 20.h, vertical: 10.h),
-                        child: Column(
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: 10.h),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          '${state.entity?[index].employeeLeave.fullName}',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
+                      child: InkWell(
+                        onTap: () {
+                          Modular.to.pushNamed('/home/approval/details',
+                              arguments: state.entity?[index]);
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 20.h, vertical: 10.h),
+                          child: Column(
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsets.only(left: 10.h),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                flex: 3,
+                                                child: Text(
+                                                  'Leave ID',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 6,
+                                                child: Text(
+                                                  '${state.entity?[index].leaveId}',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 5.h,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                'From : ${dateFormat(state.entity?[index].startTimeLeave ?? DateTime.now())}',
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
+                                          SizedBox(
+                                            height: 10.h,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                flex: 3,
+                                                child: Text(
+                                                  'Emp. Name',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                'To : ${dateFormat(state.entity?[index].endTimeLeave ?? DateTime.now())}',
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
+                                              Expanded(
+                                                flex: 6,
+                                                child: Text(
+                                                  '${state.entity?[index].employeeLeave.fullName}',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 25.h,
-                                        ),
-                                        Text(
-                                          'Reason : ${state.entity?[index].reason}',
-                                        ),
-                                      ],
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(height: 15.h),
-                          ],
+                                ],
+                              ),
+                              SizedBox(height: 15.h),
+                            ],
+                          ),
                         ),
                       ),
                     ),

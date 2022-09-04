@@ -10,12 +10,14 @@ abstract class ApprovalRepository {
       getListReplacementApproval();
 
   Future<Either<Failure, void>> approval(
+    String idApproval,
     String leaveId,
     String employeeId,
     String comment,
   );
 
   Future<Either<Failure, void>> reject(
+    String idApproval,
     String leaveId,
     String employeeId,
     String comment,

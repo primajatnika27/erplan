@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../data/repository_impl/approval_repository_impl.dart';
 import '../../../../../../helper/flushbar.dart';
 import '../../../../../core/app.dart';
+import '../../../../../widget/block_loader.dart';
 import '../../../../../widget/loader_widget.dart';
 import '../bloc.dart';
 
@@ -46,9 +47,12 @@ class _ApprovalReplacementPageState extends State<ApprovalReplacementPage> {
         create: (context) => _approvalBloc,
         child: BlocConsumer<ApprovalBloc, ApprovalState>(
           listener: (context, state) {
-            if (state is ApprovalFailedState) {
-              Navigator.of(context).pop();
-              showFlushbar(context, state.message, isError: true);
+            if (state is ApprovalLoadingState) {
+              FocusScope.of(context).requestFocus(FocusNode());
+              showDialog(
+                context: context,
+                builder: (_) => BlockLoader(),
+              );
             }
           },
           builder: (context, state) {
@@ -85,28 +89,46 @@ class _ApprovalReplacementPageState extends State<ApprovalReplacementPage> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            '${state.entity?[index].employeeLeave.fullName}',
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 5.h,
-                                          ),
                                           Row(
                                             children: [
                                               Expanded(
+                                                flex: 3,
                                                 child: Text(
-                                                  'From : ${dateFormat(state.entity?[index].startTimeLeave ?? DateTime.now())}',
+                                                  'Leave ID',
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
                                               ),
                                               Expanded(
+                                                flex: 6,
                                                 child: Text(
-                                                  'To : ${dateFormat(state.entity?[index].endTimeLeave ?? DateTime.now())}',
+                                                  '${state.entity?[index].leaveId}',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 10.h,
+                                          ),
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                flex: 3,
+                                                child: Text(
+                                                  'Emp. Name',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 6,
+                                                child: Text(
+                                                  '${state.entity?[index].employeeLeave.fullName}',
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                   ),
@@ -117,8 +139,35 @@ class _ApprovalReplacementPageState extends State<ApprovalReplacementPage> {
                                           SizedBox(
                                             height: 25.h,
                                           ),
-                                          Text(
-                                            'Reason : ${state.entity?[index].reason}',
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                flex: 3,
+                                                child: Text(
+                                                  'Status',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                flex: 6,
+                                                child: Text(
+                                                  '${state.entity![index].replacementStatusName}',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: state.entity![index]
+                                                                    .replacementStatus ==
+                                                                '0' ||
+                                                            state.entity![index]
+                                                                    .replacementStatus ==
+                                                                '2'
+                                                        ? Colors.red
+                                                        : Colors.green,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ],
                                       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
@@ -83,7 +84,7 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
           listeners: [
             BlocListener<LeaveBloc, LeaveState>(
               bloc: _leaveBloc,
-              listener: (context, state) {
+              listener: (context, state) async {
                 if (state is SaveLeaveLoadingState) {
                   FocusScope.of(context).requestFocus(FocusNode());
                   showDialog(
@@ -155,9 +156,9 @@ class _LeavesMenuPageState extends State<LeavesMenuPage> {
                 }
 
                 if (state is LeaveSaveSuccessState) {
-                  Navigator.of(context).pop();
-                  Navigator.of(context).pop();
                   showFlushbar(context, 'Success Create Leave');
+                  await Future.delayed(Duration(milliseconds: 500));
+                  Modular.to.pushReplacementNamed('/home/');
                 }
               },
             ),
